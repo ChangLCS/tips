@@ -11,6 +11,8 @@ reg = new RegExp(/^[-+]?\d*\.?\d+$/);
  * {n, m} n到m个
  */
 
+// 加个空格测试全局git帐号
+
 export default {
   reg,
 };
