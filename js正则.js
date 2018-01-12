@@ -11,6 +11,10 @@ reg = new RegExp(/^[-+]?\d*\.?\d+$/);
  * {n, m} n到m个
  */
 
+ 
+//  匹配console.log (前半段包括了 回车、空格、/)
+ reg = new RegExp(/([\n\s/]*)console\.log\(.*?\);/);
+
 // 加个空格测试全局git帐号
 
 export default {
