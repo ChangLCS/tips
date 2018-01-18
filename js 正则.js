@@ -11,9 +11,12 @@ reg = new RegExp(/^[-+]?\d*\.?\d+$/);
  * {n, m} n到m个
  */
 
- 
+
 //  匹配console.log (前半段包括了 回车、空格、/)
- reg = new RegExp(/([\n\s/]*)console\.log\(.*?\);/);
+reg = new RegExp(/([\n\s/]*)console\.log\(.*?\);/);
+
+// 必须含有数字且字母
+reg = new RegExp(/([0-9].*[A-Za-z]|[A-Za-z].*[0-9])/);
 
 // 加个空格测试全局git帐号
 
