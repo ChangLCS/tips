@@ -1,0 +1,5 @@
+element UI 表格 当有多个v-if 显示隐藏列的时候表格布局bug
+
+在每一个el-table-column 加一个:key="Math.random()"
+牵扯到动态显示隐藏的，建议给 el-table-column 或 el-table 加上 key："Math.random()"
+Math.random() 只是为了说明效果，实际使用任何唯一性的值都行。
