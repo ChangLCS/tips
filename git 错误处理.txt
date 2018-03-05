@@ -3,7 +3,12 @@
 git pull origin master --allow-unrelated-histories
 
 
+git 本地关联远程仓库
+git remote add origin git@github.com:stormzhang/test.git(这里是git地址)
 
+
+git 本地分支关联远程分支
+git branch --set-upstream-to=origin/<branch> <branch>
 
 
 git 配置全局帐号密码
