@@ -41,7 +41,7 @@ import config
 
 * 如果 **main.py** 想引用 **doing.py** 呢？
 
-> 只要在**run**文件夹里面加入一个空的文件`__init__`
+> 只要在**run**文件夹里面新建一个空的文件`__init__.py`
 
 然后如下代码：
 
@@ -51,7 +51,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(__file__, '../..')))
 
-from doing import run.doing
+from run import doing
 ```
 
 or
