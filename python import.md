@@ -1,6 +1,6 @@
 # 关于 python import 自定义模块的问题
 
-python 的 import 与 js 有点类似，不过，关于路径的问题
+> python 的 import 与 js 有点类似，不过，关于路径的问题
 
 * 假设文档目录是以下的样子
 
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(__file__, '../..')))
 import config
 ```
 
-重点就在第三行
+> 重点就在第三行
 
 `__file__`
 
@@ -43,7 +43,7 @@ import config
 
 > 只要在**run**文件夹里面新建一个空的文件`__init__.py`
 
-然后如下代码：
+> 然后如下代码：
 
 ```
 import os
@@ -54,7 +54,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(__file__, '../..')))
 from run import doing
 ```
 
-or
+> or
 
 ```
 import os
@@ -64,3 +64,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(__file__, '../..', run)))
 
 import doing
 ```
+
+* tips
+  > 由于 python 没有花括号，完全通过缩进来控制`if..else`，`for`，`while`之类的判断或循环，所以，不要吝啬`pass`，这样看起来会方便点，加不加还有在哪里加就看个人习惯了
