@@ -36,7 +36,7 @@ import win32con
 
 \*
 
-* 找到某一个窗口进程
+* 找到某一个窗口进程唯一标识 id
 
 `win32gui.FindWindow(className, windowText)`
 
