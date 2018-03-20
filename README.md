@@ -9,3 +9,7 @@
 ## 正则
 
 ## Issues 写了一点小日志
+
+## Mongoose 基础入门（nodejs 操作 MangoDB 模块）
+
+https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral
