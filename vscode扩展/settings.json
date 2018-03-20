@@ -1,0 +1,40 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+  "editor.renderWhitespace": "all",
+  "window.menuBarVisibility": "default",
+  "window.zoomLevel": 0,
+  "workbench.statusBar.visible": true,
+  "workbench.activityBar.visible": true,
+  "editor.minimap.enabled": false,
+  "editor.detectIndentation": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 100,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "extensions.ignoreRecommendations": false,
+  "typescript.check.npmIsInstalled": false,
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+  "typescript.reportStyleChecksAsWarnings": false,
+  "problems.autoReveal": false,
+  // 自动更新扩展
+  "extensions.autoUpdate": false,
+  "search.followSymlinks": false,
+  "git.autofetch": true,
+  //  vetur自定义
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  // Default formatter for <script> region
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "eslint._legacyModuleResolve": true,
+  //  prettier formatter configuration 配置
+  "prettier.arrowParens": "always",
+  "prettier.printWidth": 100,
+  "prettier.proseWrap": "never",
+  // true:单引号;  false: 双引号
+  "prettier.singleQuote": true,
+  // 结尾的逗号分号什么的
+  //  Valid options:
+  //     'none' - 不加
+  //     'es5' - Trailing commas where valid in ES5 (objects, arrays, etc)
+  //     'all' - 都加
+  "prettier.trailingComma": "all",
+}
