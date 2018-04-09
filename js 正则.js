@@ -17,8 +17,10 @@ reg = new RegExp(/([\n\s/]*)console\.log\(.*?\);/);
 // 必须含有数字且字母
 reg = new RegExp(/([0-9].*[A-Za-z]|[A-Za-z].*[0-9])/);
 
-// 加个空格测试全局git帐号
+//  给数字加千分号
+const toPerThousandSign = (value) => value.replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
 
 export default {
   reg,
+  toPerThousandSign,
 };
