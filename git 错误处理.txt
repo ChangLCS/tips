@@ -40,3 +40,7 @@ doc/*.txt 　　# 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
+
+
+在git中出现中文乱码的解决方案
+https://blog.csdn.net/tyro_java/article/details/53439537
