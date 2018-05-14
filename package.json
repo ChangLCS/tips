@@ -1,0 +1,22 @@
+{
+  "name": "tips",
+  "version": "1.0.0",
+  "description": "https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral",
+  "main": "js 正则.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChangLCS/tips.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChangLCS/tips/issues"
+  },
+  "homepage": "https://github.com/ChangLCS/tips#readme",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  }
+}
