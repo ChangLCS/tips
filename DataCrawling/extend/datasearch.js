@@ -1,35 +1,73 @@
 // ==UserScript==
-// @name        爬虫测试（获取链接）
-// @namespace   GetTmallDetail
-// @description 获取链接
+// @name        爬虫测试（获取链接列表）
+// @namespace   datasearch
+// @description 爬虫测试（获取链接列表）
 // @version     1.0
 // @grant       Chang
 // ==/UserScript==
 (function() {
-  console.log('pachongceshi');
+  const baseHost = 'app1.sfda.gov.cn';
+  const baseName = 'datasearch';
+  if (location.host.indexOf(baseHost) === -1 && location.pathname.indexOf(baseName) === -1) {
+    return;
+  }
 
-  var topdiv = document.createElement('div');
-  var btn = document.createElement('button');
-  var input = document.createElement('input');
-  var timeInterval;
+  console.log('当前网址：', location.href);
 
-  var isGo = false;
+  const topdiv = document.createElement('div');
+  topdiv.id = 'changdatacrawling';
+  topdiv.innerHTML =
+    '<div>' +
+    '<select id="changdata-select">' +
+    '<option value="请选择">请选择</option>' +
+    '</select>' +
+    '</div>' +
+    '<div>' +
+    '<span>基本信息：</span>' +
+    '<span id="changdata-total" style="color:#ff0;"></span>' +
+    '</div>' +
+    '<div>' +
+    '<span>前往页数：</span>' +
+    '<input id="changdata-input" type="text" />' +
+    '</div>' +
+    '<div>' +
+    '<button id="changdata-btn">立即开始</button>' +
+    '</div>';
+  document.body.insertBefore(topdiv, document.getElementsByTagName('table')[0]);
 
-  var reload = () => {
-    isGo = false;
-    btn.style.backgroundColor = '#090';
-    btn.innerText = '开始   ' + input.value;
-    clearInterval(timeInterval);
-    btn.onclick = startBtn;
-  };
+  const $changSelect = document.getElementById('changdata-select'); //  自定义下拉模块
+  const $changTotal = document.getElementById('changdata-total'); //  自定义总页数
+  const $changInput = document.getElementById('changdata-input'); //  自定义输入前往页码的地方
+  const $changBtn = document.getElementById('changdata-btn'); //  自定义开始
+  let total = 0;
+  let isGo = true;
 
-  var init = function(value) {
-    var end = 27547;
-    var getPage = (indexppppp) => {
-      input.value = indexppppp;
-      if (indexppppp <= end) {
-        var $content = document.getElementById('content');
-        var $list = $content.querySelectorAll('a');
+  const $content = document.getElementById('content'); // 主要操作区域
+
+  const $drugDom = document.querySelectorAll('#ta3 tr');
+  const $drugData = {};
+  for (let i = 0; i < $drugDom.length; i += 1) {
+    const $item = $drugDom[i];
+    if ($item.id) {
+      $drugData[$item.innerText ? $item.innerText.replace(/\s/g, '') : i] = $item;
+    }
+  }
+
+  console.log('$drugData', $drugData);
+  const selectOption = Object.keys($drugData);
+  let selectHtml = '';
+  for (let i = 0; i < selectOption.length; i += 1) {
+    const item = selectOption[i];
+    selectHtml += `<option value=${item}>${item}</option>`;
+  }
+  $changSelect.innerHTML = $changSelect.innerHTML + selectHtml;
+
+  //  真正开始爬取数据
+  const GotoDo = (value) => {
+    const getPage = (pageIndex) => {
+      $changInput.value = pageIndex;
+      if (pageIndex <= total && isGo) {
+        const $list = $content.querySelectorAll('a');
         if ($list && $list.length) {
           const retList = [];
           for (let i = 0; i < $list.length; i += 1) {
@@ -39,35 +77,44 @@
               url: item.href,
             });
           }
-          var data = {
-            index: indexppppp,
+          const data = {
+            index: pageIndex,
             data: retList,
           };
-          var xhr = new XMLHttpRequest();
+          const xhr = new XMLHttpRequest();
           xhr.open('POST', 'http://localhost:9000/pachong', true);
           xhr.setRequestHeader('Content-Type', 'appivation/form-data');
           xhr.send(JSON.stringify(data));
-          console.log('go', indexppppp);
 
           xhr.onreadystatechange = () => {
             //响应信息返回后处理，在页面提示用户
-            if (xhr.readyState === 4 && isGo) {
-              console.log('result', indexppppp, xhr);
+            if (xhr.readyState === 4) {
+              console.log(pageIndex, '！操作成功啦！现在前往下一页');
               $imgList = $content.querySelectorAll('img');
               if ($imgList && $imgList.length) {
                 $imgList[2].click();
                 setTimeout(() => {
-                  getPage(indexppppp + 1);
+                  getPage(pageIndex + 1);
                 }, 2000);
               } else {
-                reload();
-                console.error('出错了，页码：', indexppppp, new Date().toString());
+                console.error('出错了，页码：', pageIndex, new Date().toString());
+                GotoStop();
+
+                //  5s 之后重新启动
+                setTimeout(() => {
+                  $changBtn.click();
+                }, 5000);
               }
             }
           };
         } else {
-          reload();
-          console.error('页码报错，当前页码', indexppppp, new Date().toString());
+          console.error('页码报错，当前页码', pageIndex, new Date().toString());
+          GotoStop();
+
+          //  5s 之后重新启动
+          setTimeout(() => {
+            $changBtn.click();
+          }, 5000);
         }
       }
     };
@@ -79,30 +126,48 @@
     }
   };
 
-  var startBtn = () => {
-    isGo = true;
-    btn.style.backgroundColor = '#f00';
-    var itime = 0;
-    var BtnTime = function() {
-      btn.innerText = '正在扒东西，请稍等（' + (itime = itime + 0.1).toFixed(2) + 's）';
-    };
-    timeInterval = setInterval(BtnTime, 100);
-    init(input.value);
-    btn.onclick = reload;
+  //  停止爬取
+  const GotoStop = () => {
+    isGo = false;
+    $changBtn.innerText = '立即开始';
+    $changBtn.style.color = '#000';
+    $changBtn.onclick = Readload;
   };
 
-  topdiv.style = 'width: 100%; height: 40px; position: relative; opacity: 0;';
-  input.id = 'pachonginput';
-  input.value = '1';
-  input.style =
-    'width: 100%; height: 40px; display: block; font-size: 14px; position: fixed; top: 0; left: 0; z-index: 9999999999999;';
-  btn.id = 'ChangImgGoToDown';
-  btn.value = '开始';
-  btn.innerText = '开始';
-  btn.style =
-    'width: 100%; height: 40px; display: block; font-size: 14px; position: fixed; top: 40px; left: 0; z-index: 9999999999999; background-color: #090; color: #fff;';
-  btn.onclick = startBtn;
-  document.body.insertBefore(input, document.getElementsByTagName('table')[0]);
-  document.body.insertBefore(btn, document.getElementsByTagName('table')[0]);
-  document.body.insertBefore(topdiv, document.getElementsByTagName('table')[0]);
+  //  第一次进入点击立即开始触发事件
+  const Readload = () => {
+    if (!$changSelect.selectedIndex) {
+      return alert('请选择目录');
+    } else if (!$changInput.value) {
+      return alert('请输入页码');
+    }
+
+    isGo = true;
+    const text = $changSelect.selectedOptions[0].value;
+    const $active = $drugData[text];
+    $active.querySelectorAll('td')[3].click();
+    setTimeout(() => {
+      document.getElementById('goInt').value = $changInput.value;
+      const $footer = $content.querySelectorAll('table')[4];
+      const $footerTd = $footer.querySelectorAll('td');
+      $changTotal.innerText = $footerTd[0].innerText;
+      const reg = new RegExp(/共(.*)页/);
+      const strArr = $footerTd[0].innerText.match(reg);
+      if (strArr && strArr.length) {
+        total = Number(strArr[1]);
+      }
+      $footerTd[$footerTd.length - 1].querySelector('input').click();
+
+      $changBtn.innerText = '立即停止';
+      $changBtn.style.color = '#f00';
+      $changBtn.onclick = GotoStop;
+
+      //  立即开始之后
+      setTimeout(() => {
+        GotoDo($changInput.value);
+      }, 1000);
+    }, 1000);
+  };
+
+  $changBtn.onclick = Readload;
 })();

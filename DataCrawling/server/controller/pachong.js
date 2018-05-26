@@ -11,7 +11,7 @@ const _ = (params, form) => {
     console.log('i in ', params, form);
     try {
       const newFile = fs.createWriteStream(
-        path.resolve(__dirname, `../src/json/${form.index}.json`),
+        path.resolve(__dirname, `../upload/json/${form.index}.json`),
       );
       newFile.write(JSON.stringify(form.data), 'UTF8');
       newFile.end();
