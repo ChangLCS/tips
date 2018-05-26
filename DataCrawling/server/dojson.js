@@ -10,30 +10,50 @@ const path = require('path');
 const fs = require('fs');
 
 let retList = [];
+const baseUrl = 'http://app1.sfda.gov.cn/datasearch/face3/';
+const regUrl = new RegExp(/([^']*)'(.*)'([^']*)/);
+
+const getUrl = (str) => {
+  const arr = str.match(regUrl);
+  if (arr && arr.length) return `${baseUrl}${arr[2]}`;
+  return str;
+};
 
 const doJson = (arr) => {
-  const saveJson = (i) => {
-    if (i < arr.length) {
-      const text = fs.readFileSync(path.resolve(__dirname, 'src/json/', arr[i]), 'UTF8');
+  const saveJson = (index) => {
+    if (index < arr.length) {
+      const filePath = path.resolve(__dirname, 'src/json/', arr[index]);
+      const text = fs.readFileSync(filePath, 'UTF8');
       const data = JSON.parse(text);
-      retList = retList.concat(data);
-      const index = (i + 1) % 100;
-      if (index === 0) {
-        const pathName = `src/data/${Math.floor((i + 1) / 100)}.json`;
-        const newFile = fs.createWriteStream(path.resolve(__dirname, pathName));
+      for (let i = 0; i < data.length; i += 1) {
+        const item = data[i];
+        retList = retList.concat({
+          ...item,
+          url: getUrl(item.url),
+        });
+      }
+
+      console.log(`文件    ${filePath}    OK！`);
+      if ((index + 1) % 100 === 0) {
+        const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
+        const newFile = fs.createWriteStream(fileName);
         newFile.write(JSON.stringify(retList), 'UTF8');
         newFile.end();
         retList = [];
-        console.log(pathName);
+        console.log('----------------');
+        console.log(`创建文件    ${fileName}    OK！`);
       }
-      saveJson(i + 1);
+
+      saveJson(index + 1);
     } else {
-      const pathName = `src/data/${Math.floor((i + 1) / 100) + 1}.json`;
-      const newFile = fs.createWriteStream(path.resolve(__dirname, pathName));
+      const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
+      const newFile = fs.createWriteStream(fileName);
       newFile.write(JSON.stringify(retList), 'UTF8');
       newFile.end();
-      console.log('ok');
-      console.log(pathName);
+      retList = [];
+      console.log('----------------');
+      console.log(`创建文件    ${fileName}    OK！`);
+      console.log(`全部OK！`);
     }
   };
   saveJson(0);

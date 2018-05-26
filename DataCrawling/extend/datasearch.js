@@ -8,7 +8,12 @@
 (function() {
   const baseHost = 'app1.sfda.gov.cn';
   const baseName = 'datasearch';
-  if (location.host.indexOf(baseHost) === -1 && location.pathname.indexOf(baseName) === -1) {
+  const sonName = 'content';
+  if (
+    location.host.indexOf(baseHost) === -1 &&
+    location.pathname.indexOf(baseName) === -1 &&
+    location.pathname.indexOf(sonName) > -1
+  ) {
     return;
   }
 
@@ -62,6 +67,13 @@
   }
   $changSelect.innerHTML = $changSelect.innerHTML + selectHtml;
 
+  //  设置基础信息
+  const setBaseTotal = () => {
+    const $footer = $content.querySelectorAll('table')[4];
+    const $footerTd = $footer.querySelectorAll('td');
+    $changTotal.innerText = $footerTd[0].innerText;
+  };
+
   //  真正开始爬取数据
   const GotoDo = (value) => {
     const getPage = (pageIndex) => {
@@ -94,6 +106,7 @@
               if ($imgList && $imgList.length) {
                 $imgList[2].click();
                 setTimeout(() => {
+                  setBaseTotal();
                   getPage(pageIndex + 1);
                 }, 2000);
               } else {
@@ -148,9 +161,12 @@
     $active.querySelectorAll('td')[3].click();
     setTimeout(() => {
       document.getElementById('goInt').value = $changInput.value;
+
+      setBaseTotal();
+
       const $footer = $content.querySelectorAll('table')[4];
       const $footerTd = $footer.querySelectorAll('td');
-      $changTotal.innerText = $footerTd[0].innerText;
+
       const reg = new RegExp(/共(.*)页/);
       const strArr = $footerTd[0].innerText.match(reg);
       if (strArr && strArr.length) {
