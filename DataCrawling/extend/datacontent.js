@@ -20,33 +20,66 @@
   console.log('当前网址：', location.href);
 
   const topdiv = document.createElement('div');
-  topdiv.id = 'changdatacrawling';
+  topdiv.id = 'chang-content';
   topdiv.innerHTML =
     '<div>' +
-    '<select id="changdata-select">' +
-    '<option value="请选择">请选择</option>' +
-    '</select>' +
+    '<span>当前文件名称：</span>' +
+    '<span id="changcontent-filename"></span>' +
     '</div>' +
     '<div>' +
-    '<span>基本信息：</span>' +
-    '<span id="changdata-total" style="color:#ff0;"></span>' +
+    '<span>当前index：</span>' +
+    '<span id="changcontent-index"></span>' +
     '</div>' +
     '<div>' +
-    '<span>前往页数：</span>' +
-    '<input id="changdata-input" type="text" />' +
-    '</div>' +
-    '<div>' +
-    '<button id="changdata-btn">立即开始</button>' +
+    '<button id="changcontent-btn">立即开始</button>' +
     '</div>';
-  setTimeout(() => {}, 1000);
   document.body.insertBefore(topdiv, document.getElementsByTagName('div')[0]);
 
-  const $changSelect = document.getElementById('changdata-select'); //  自定义下拉模块
-  const $changTotal = document.getElementById('changdata-total'); //  自定义总页数
-  const $changInput = document.getElementById('changdata-input'); //  自定义输入前往页码的地方
-  const $changBtn = document.getElementById('changdata-btn'); //  自定义开始
-  let total = 0;
-  let isGo = true;
+  const $changFilename = document.getElementById('changcontent-filename'); //  当前文件名称
+  const $changIndex = document.getElementById('changcontent-index'); //  当前正在操作的index
+  const $changBtn = document.getElementById('changcontent-btn'); //  自定义开始
+
+  let statusData = {};
+
+  const api = () => {};
+  api.getInfo = (callback) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:9000/get/status', true);
+    xhr.onreadystatechange = () => {
+      //  成功
+      if (xhr.readyState === 4) {
+        // callback(JSO);
+      }
+    };
+    xhr.send();
+
+    //         xhr.open('POST', 'http://localhost:9000/pachong', true);
+    //         xhr.setRequestHeader('Content-Type', 'appivation/form-data');
+    //         xhr.send(JSON.stringify(data));
+
+    //         xhr.onreadystatechange = () => {
+    //           //响应信息返回后处理，在页面提示用户
+    //           if (xhr.readyState === 4) {
+    //             console.log(pageIndex, '！操作成功啦！现在前往下一页');
+    //             $imgList = $content.querySelectorAll('img');
+    //             if ($imgList && $imgList.length) {
+    //               $imgList[2].click();
+    //               setTimeout(() => {
+    //                 setBaseTotal();
+    //                 getPage(pageIndex + 1);
+    //               }, 2000);
+    //             } else {
+    //               console.error('出错了，页码：', pageIndex, new Date().toString());
+    //               GotoStop();
+
+    //               //  5s 之后重新启动
+    //               setTimeout(() => {
+    //                 $changBtn.click();
+    //               }, 5000);
+    //             }
+    //           }
+    //         };
+  };
 
   const start = () => {
     location.href =
