@@ -10,9 +10,8 @@
   const baseName = 'datasearch';
   const sonName = 'content';
   if (
-    location.host.indexOf(baseHost) === -1 &&
-    location.pathname.indexOf(baseName) === -1 &&
-    location.pathname.indexOf(sonName) > -1
+    (location.host.indexOf(baseHost) === -1 && location.pathname.indexOf(baseName) === -1) ||
+    (location.pathname.indexOf(baseName) > -1 && location.pathname.indexOf(sonName) > -1)
   ) {
     return;
   }
