@@ -3,4 +3,5 @@
 module.exports = {
   '/pachong': 'pachong',
   '/get/status': 'getStatus',
+  '/set/html': 'setHtml',
 };
