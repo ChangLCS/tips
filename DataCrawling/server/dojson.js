@@ -27,10 +27,7 @@ const doJson = (arr) => {
       const data = JSON.parse(text);
       for (let i = 0; i < data.length; i += 1) {
         const item = data[i];
-        retList = retList.concat({
-          ...item,
-          url: getUrl(item.url),
-        });
+        retList = retList.concat(item);
       }
 
       console.log(`文件    ${filePath}    OK！`);
@@ -59,7 +56,7 @@ const doJson = (arr) => {
   saveJson(0);
 };
 
-fs.readdir(path.resolve(__dirname, 'src/json'), (error, res) => {
+fs.readdir(path.resolve(__dirname, 'upload/json'), (error, res) => {
   if (error) {
     console.error('error', error);
   } else {

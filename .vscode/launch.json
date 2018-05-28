@@ -7,16 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Electron Main",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-      "program": "${workspaceFolder}/main.js",
-      "protocol": "legacy"
+      "name": "Launch Program",
+      "program": "${workspaceFolder}\\DataCrawling\\server\\dojson.js"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "启动程序",
-      "program": "${workspaceFolder}/node\\copyFiles\\index.js"
+      "program": "${workspaceFolder}\\DataCrawling\\server\\index.js"
     }
   ]
 }
