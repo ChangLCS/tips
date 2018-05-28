@@ -22,7 +22,7 @@ const getUrl = (str) => {
 const doJson = (arr) => {
   const saveJson = (index) => {
     if (index < arr.length) {
-      const filePath = path.resolve(__dirname, 'src/json/', arr[index]);
+      const filePath = path.resolve(__dirname, 'upload/json/', arr[index]);
       const text = fs.readFileSync(filePath, 'UTF8');
       const data = JSON.parse(text);
       for (let i = 0; i < data.length; i += 1) {
