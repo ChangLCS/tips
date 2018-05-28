@@ -10,22 +10,30 @@
 
 <body>
 
-  <div id="changdatacrawling">
+  <div id="changdatacrawling-content">
     <div>
-      <select id="changdata-select">
-        <option value="请选择">请选择</option>
+      <span>所有文件目录</span>
+      <select id="changcontent-select">
       </select>
     </div>
     <div>
-      <span>总页数</span>
-      <span id="changdata-total">200000</span>
+      <span>当前文件</span>
+      <span id="changcontent-file"></span>
     </div>
     <div>
-      <span>前往页数</span>
-      <input id="changdata-page" type="text" />
+      <span>当前index</span>
+      <span id="changcontent-index"></span>
     </div>
     <div>
-      <button id="changdata-btn">立即开始</button>
+      <span>总：</span>
+      <span id="changcontent-all" style="color: yellow;"></span>
+      <span style="margin-left: 30px;">已完成</span>
+      <span id="changcontent-finish" style="color: green;"></span>
+      <span style="margin-left: 30px;">未完成</span>
+      <span id="changcontent-unfinish" style="color: red;"></span>
+    </div>
+    <div>
+      <button id="changcontent-btn">立即开始</button>
     </div>
   </div>
 

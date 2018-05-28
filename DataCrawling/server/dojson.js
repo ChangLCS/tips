@@ -34,14 +34,16 @@ const doJson = (arr) => {
       if ((index + 1) % 100 === 0) {
         const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
         const newFile = fs.createWriteStream(fileName);
-        newFile.write(JSON.stringify(retList), 'UTF8');
-        newFile.end();
-        retList = [];
+        newFile.write(JSON.stringify(retList), 'UTF8', (error, data) => {
+          newFile.end();
+          retList = [];
+          saveJson(index + 1);
+        });
         console.log('----------------');
         console.log(`创建文件    ${fileName}    OK！`);
+      } else {
+        saveJson(index + 1);
       }
-
-      saveJson(index + 1);
     } else {
       const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
       const newFile = fs.createWriteStream(fileName);

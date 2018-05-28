@@ -23,21 +23,39 @@
   topdiv.id = 'chang-content';
   topdiv.innerHTML =
     '<div>' +
-    '<span>当前文件名称：</span>' +
-    '<span id="changcontent-filename"></span>' +
+    '<span>所有文件目录</span>' +
+    '<select id="changcontent-select">' +
+    '</select>' +
     '</div>' +
     '<div>' +
-    '<span>当前index：</span>' +
+    '<span>当前文件</span>' +
+    '<span id="changcontent-file"></span>' +
+    '</div>' +
+    '<div>' +
+    '<span>当前index</span>' +
     '<span id="changcontent-index"></span>' +
+    '</div>' +
+    '<div>' +
+    '<span>总：</span>' +
+    '<span id="changcontent-all" style="color: yellow;"></span>' +
+    '<span style="margin-left: 30px;">已完成</span>' +
+    '<span id="changcontent-finish" style="color: green;"></span>' +
+    '<span style="margin-left: 30px;">未完成</span>' +
+    '<span id="changcontent-unfinish" style="color: red;"></span>' +
     '</div>' +
     '<div>' +
     '<button id="changcontent-btn">立即开始</button>' +
     '</div>';
+
   document.body.insertBefore(topdiv, document.getElementsByTagName('div')[0]);
 
-  const $changFilename = document.getElementById('changcontent-filename'); //  当前文件名称
+  const $changFilename = document.getElementById('changcontent-file'); //  当前文件名称
   const $changIndex = document.getElementById('changcontent-index'); //  当前正在操作的index
   const $changBtn = document.getElementById('changcontent-btn'); //  自定义开始
+
+  const $finish = document.getElementById('changcontent-all'); //  总数据
+  const $finish = document.getElementById('changcontent-finish'); //  已完成
+  const $unfinish = document.getElementById('changcontent-unfinish'); //  未完成
 
   let statusData = {};
 
