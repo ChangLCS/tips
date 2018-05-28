@@ -8,6 +8,19 @@ const path = require('path');
 
 const statusPath = path.resolve(__filename, '../status.json');
 
+//  读取文件
+const readFile = (form) => {
+  const filePath = path.resolve(__filename, '../../src/data/', form.fileNow);
+  const data = JSON.parse(fs.readFileSync(filePath, 'UTF8'));
+  const item = data[form.index];
+  return Object.assign({}, form, {
+    data: {
+      name: item.name,
+      url: item.url,
+    },
+  });
+};
+
 //  初始化进入判断status 文件是否存在
 const _ = (params, form) => {
   return new Promise((resolve, reject) => {
@@ -16,7 +29,7 @@ const _ = (params, form) => {
         const data = fs.writeFileSync(statusPath, 'UTF8');
         console.log('data');
       } else {
-        const arr = fs.readdirSync(path.resolve(__filename, '../src/data'));
+        const arr = fs.readdirSync(path.resolve(__filename, '../../src/data'));
         // const nowFile = fs.readFileSync(path.resolve)
         const data = {
           fileArr: arr,
@@ -26,6 +39,9 @@ const _ = (params, form) => {
           finish: 0,
           data: {},
         };
+        const ret = readFile(data);
+        console.log('ret', ret);
+        resolve(ret);
       }
     });
     // const text = fs.readFileSync(path.resolve(__dirname, '../src/data.json'));

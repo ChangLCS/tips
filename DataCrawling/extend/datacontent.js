@@ -9,6 +9,12 @@
   const baseHost = 'app1.sfda.gov.cn';
   const baseName = 'datasearch';
   const sonName = 'content';
+  console.log(
+    location.host.indexOf(baseHost) === -1 &&
+      location.pathname.indexOf(baseName) === -1 &&
+      location.pathname.indexOf(sonName) === -1,
+    'true or false',
+  );
   if (
     location.host.indexOf(baseHost) === -1 &&
     location.pathname.indexOf(baseName) === -1 &&
@@ -49,11 +55,12 @@
 
   document.body.insertBefore(topdiv, document.getElementsByTagName('div')[0]);
 
+  const $changFileArr = document.getElementById('changcontent-select'); // 所有文件目录
   const $changFilename = document.getElementById('changcontent-file'); //  当前文件名称
   const $changIndex = document.getElementById('changcontent-index'); //  当前正在操作的index
   const $changBtn = document.getElementById('changcontent-btn'); //  自定义开始
 
-  const $finish = document.getElementById('changcontent-all'); //  总数据
+  const $all = document.getElementById('changcontent-all'); //  总数据
   const $finish = document.getElementById('changcontent-finish'); //  已完成
   const $unfinish = document.getElementById('changcontent-unfinish'); //  未完成
 
@@ -66,46 +73,31 @@
     xhr.onreadystatechange = () => {
       //  成功
       if (xhr.readyState === 4) {
-        // callback(JSO);
+        callback(xhr);
       }
     };
     xhr.send();
-
-    //         xhr.open('POST', 'http://localhost:9000/pachong', true);
-    //         xhr.setRequestHeader('Content-Type', 'appivation/form-data');
-    //         xhr.send(JSON.stringify(data));
-
-    //         xhr.onreadystatechange = () => {
-    //           //响应信息返回后处理，在页面提示用户
-    //           if (xhr.readyState === 4) {
-    //             console.log(pageIndex, '！操作成功啦！现在前往下一页');
-    //             $imgList = $content.querySelectorAll('img');
-    //             if ($imgList && $imgList.length) {
-    //               $imgList[2].click();
-    //               setTimeout(() => {
-    //                 setBaseTotal();
-    //                 getPage(pageIndex + 1);
-    //               }, 2000);
-    //             } else {
-    //               console.error('出错了，页码：', pageIndex, new Date().toString());
-    //               GotoStop();
-
-    //               //  5s 之后重新启动
-    //               setTimeout(() => {
-    //                 $changBtn.click();
-    //               }, 5000);
-    //             }
-    //           }
-    //         };
   };
 
   const start = () => {
-    location.href =
-      'http://app1.sfda.gov.cn/datasearch/face3/content.jsp?tableId=41&tableName=TABLE41&tableView=%E8%8D%AF%E5%93%81%E7%BB%8F%E8%90%A5%E4%BC%81%E4%B8%9A&Id=699';
-    setTimeout(() => {
-      const html = document.querySelector('html').innerHTML;
-      console.log(html);
-    }, 2000);
+    console.log('start');
+    api.getInfo((res) => {
+      const ret = JSON.parse(res.response);
+      const data = ret.result;
+
+      const arrHtml = '';
+      for (let i = 0; i < data.fileArr.length; i += 1) {
+        const item = data.fileArr[i];
+        arrHtml += `<option value=${item}>${item}</option>`;
+      }
+      $changFileArr = arrHtml;
+
+      $changFilename.innerText = data.data.name;
+      $changIndex.innerText = data.index;
+      $all.innerText = data.all;
+      $finish.innerText = data.finish;
+      $unfinish.innerText = data.all - data.finish;
+    });
   };
 
   $changBtn.onclick = start;
