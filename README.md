@@ -17,3 +17,9 @@ https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium
 ## Python 控制、监听键盘鼠标：pynput（不要听网上的说 pyhook，那是个天坑）
 
 http://www.cnblogs.com/botoo/p/8302531.html
+
+## npm 地址
+
+```
+https://registry.npmjs.org/
+```
