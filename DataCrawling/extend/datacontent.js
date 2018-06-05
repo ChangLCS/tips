@@ -68,7 +68,7 @@
   const api = () => {};
   api.getInfo = (callback) => {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://192.168.4.111:9000/get/status?type=1', true);
+    xhr.open('GET', 'http://192.168.4.111:9000/get/status?type=10', true);
     xhr.onreadystatechange = () => {
       //  成功
       if (xhr.readyState === 4) {
@@ -85,7 +85,7 @@
     xhr.send(
       JSON.stringify(
         Object.assign({}, data, {
-          type: 1,
+          type: 10,
         }),
       ),
     );

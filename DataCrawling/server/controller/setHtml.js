@@ -15,7 +15,7 @@ const _ = (params, form) => {
     const htmlPath = path.resolve(
       __filename,
       `../../src/html/${form.type}/`,
-      `${statusData.data.name}}.html`,
+      `${statusData.data.name.split('.')[0]}.html`,
     );
     const file = fs.createWriteStream(htmlPath);
     file.write(form.html, () => {
@@ -43,9 +43,11 @@ const _ = (params, form) => {
 
         fs.writeFile(statusPath, JSON.stringify(ret), () => {
           statusData = JSON.parse(fs.readFileSync(statusPath, 'UTF8'));
+          console.log('resolve', statusData);
           resolve(statusData);
         });
       } catch (error) {
+        console.log('reject', error);
         return reject(error);
       }
     });
