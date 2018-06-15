@@ -19,6 +19,12 @@ const getUrl = (str) => {
   return str;
 };
 
+const regId = new RegExp(/(.*)Id=(.*)/);
+const getId = (str) => {
+  const arr = str.match(regId);
+  if (arr && arr.length) return arr[2];
+};
+
 const doJson = (arr) => {
   const saveJson = (index) => {
     if (index < arr.length) {
@@ -27,7 +33,10 @@ const doJson = (arr) => {
       const data = JSON.parse(text);
       for (let i = 0; i < data.length; i += 1) {
         const item = data[i];
-        retList = retList.concat(Object.assign({}, item, { url: getUrl(item.url) }));
+        retList = retList.concat({
+          // url: getUrl(item.url),
+          id: getId(item.url),
+        });
       }
 
       console.log(`文件    ${filePath}    OK！`);
