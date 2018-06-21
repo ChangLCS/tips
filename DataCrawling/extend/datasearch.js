@@ -76,58 +76,65 @@
   //  真正开始爬取数据
   const GotoDo = (value) => {
     const getPage = (pageIndex) => {
-      $changInput.value = pageIndex;
-      if (pageIndex <= total && isGo) {
-        const $list = $content.querySelectorAll('a');
-        if ($list && $list.length) {
-          const retList = [];
-          for (let i = 0; i < $list.length; i += 1) {
-            const item = $list[i];
-            retList.push({
-              name: item.innerText,
-              url: item.href,
-            });
-          }
-          const data = {
-            index: pageIndex,
-            data: retList,
-          };
-          const xhr = new XMLHttpRequest();
-          xhr.open('POST', 'http://localhost:9000/pachong', true);
-          xhr.setRequestHeader('Content-Type', 'appivation/form-data');
-          xhr.send(JSON.stringify(data));
-
-          xhr.onreadystatechange = () => {
-            //响应信息返回后处理，在页面提示用户
-            if (xhr.readyState === 4) {
-              console.log(pageIndex, '！操作成功啦！现在前往下一页');
-              $imgList = $content.querySelectorAll('img');
-              if ($imgList && $imgList.length) {
-                $imgList[2].click();
-                setTimeout(() => {
-                  setBaseTotal();
-                  getPage(pageIndex + 1);
-                }, 2000);
-              } else {
-                console.error('出错了，页码：', pageIndex, new Date().toString());
-                GotoStop();
-
-                //  5s 之后重新启动
-                setTimeout(() => {
-                  $changBtn.click();
-                }, 5000);
-              }
+      try {
+        $changInput.value = pageIndex;
+        if (pageIndex <= total && isGo) {
+          const $list = $content.querySelectorAll('a');
+          if ($list && $list.length) {
+            const retList = [];
+            for (let i = 0; i < $list.length; i += 1) {
+              const item = $list[i];
+              retList.push({
+                name: item.innerText,
+                url: item.href,
+              });
             }
-          };
-        } else {
-          console.error('页码报错，当前页码', pageIndex, new Date().toString());
-          GotoStop();
+            const data = {
+              index: pageIndex,
+              data: retList,
+            };
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:9000/pachong', true);
+            xhr.setRequestHeader('Content-Type', 'appivation/form-data');
+            xhr.send(JSON.stringify(data));
 
-          //  5s 之后重新启动
-          setTimeout(() => {
-            $changBtn.click();
-          }, 5000);
+            xhr.onreadystatechange = (e) => {
+              //响应信息返回后处理，在页面提示用户
+              if (xhr.readyState === 4) {
+                console.log(pageIndex, '！操作成功啦！现在前往下一页');
+                $imgList = $content.querySelectorAll('img');
+                if ($imgList && $imgList.length) {
+                  $imgList[2].click();
+                  setTimeout(() => {
+                    setBaseTotal();
+                    getPage(pageIndex + 1);
+                  }, 2000);
+                } else {
+                  console.error('出错了，页码：', pageIndex, new Date().toString());
+                  GotoStop();
+
+                  //  5s 之后重新启动
+                  setTimeout(() => {
+                    $changBtn.click();
+                  }, 5000);
+                }
+              }
+            };
+          } else {
+            console.error('页码报错，当前页码', pageIndex, new Date().toString());
+            GotoStop();
+
+            //  5s 之后重新启动
+            setTimeout(() => {
+              $changBtn.click();
+            }, 5000);
+          }
         }
+      } catch (error) {
+        console.log('error 不知道哪里错了', pageIndex);
+        setTimeout(() => {
+          getPage(pageIndex);
+        }, 2000);
       }
     };
 
