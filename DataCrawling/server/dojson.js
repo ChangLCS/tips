@@ -31,6 +31,8 @@ const doJson = (arr) => {
       const filePath = path.resolve(__dirname, 'upload/json/', arr[index]);
       const text = fs.readFileSync(filePath, 'UTF8');
       const data = JSON.parse(text);
+      console.log(arr[index], '-----length-----', data.length);
+
       for (let i = 0; i < data.length; i += 1) {
         const item = data[i];
         retList = retList.concat({
@@ -39,7 +41,7 @@ const doJson = (arr) => {
         });
       }
 
-      console.log(`文件    ${filePath}    OK！`);
+      // console.log(`文件    ${filePath}    OK！`);
       if ((index + 1) % 100 === 0) {
         const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
         const newFile = fs.createWriteStream(fileName);
