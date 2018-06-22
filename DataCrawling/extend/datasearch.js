@@ -98,9 +98,22 @@
             xhr.setRequestHeader('Content-Type', 'appivation/form-data');
             xhr.send(JSON.stringify(data));
 
+            xhr.onerror = (e) => {
+              console.error('出错了，页码：', pageIndex, new Date().toString());
+              GotoStop();
+
+              //  5s 之后重新启动
+              setTimeout(() => {
+                $changBtn.click();
+              }, 5000);
+            };
             xhr.onreadystatechange = (e) => {
+              console.log('onreadystatechange', e);
+
               //响应信息返回后处理，在页面提示用户
               if (xhr.readyState === 4) {
+                console.log(xhr);
+
                 console.log(pageIndex, '！操作成功啦！现在前往下一页');
                 $imgList = $content.querySelectorAll('img');
                 if ($imgList && $imgList.length) {
