@@ -1,5 +1,10 @@
-element UI ±í¸ñ µ±ÓĞ¶à¸öv-if ÏÔÊ¾Òş²ØÁĞµÄÊ±ºò±í¸ñ²¼¾Öbug
+element UI è¡¨æ ¼ å½“æœ‰å¤šä¸ªv-if æ˜¾ç¤ºéšè—åˆ—çš„æ—¶å€™è¡¨æ ¼å¸ƒå±€bug
 
-ÔÚÃ¿Ò»¸öel-table-column ¼ÓÒ»¸ö:key="Math.random()"
-Ç£³¶µ½¶¯Ì¬ÏÔÊ¾Òş²ØµÄ£¬½¨Òé¸ø el-table-column »ò el-table ¼ÓÉÏ key£º"Math.random()"
-Math.random() Ö»ÊÇÎªÁËËµÃ÷Ğ§¹û£¬Êµ¼ÊÊ¹ÓÃÈÎºÎÎ¨Ò»ĞÔµÄÖµ¶¼ĞĞ¡£
+åœ¨æ¯ä¸€ä¸ªel-table-column åŠ ä¸€ä¸ª:key="Math.random()"
+ç‰µæ‰¯åˆ°åŠ¨æ€æ˜¾ç¤ºéšè—çš„ï¼Œå»ºè®®ç»™ el-table-column æˆ– el-table åŠ ä¸Š keyï¼š"Math.random()"
+Math.random() åªæ˜¯ä¸ºäº†è¯´æ˜æ•ˆæœï¼Œå®é™…ä½¿ç”¨ä»»ä½•å”¯ä¸€æ€§çš„å€¼éƒ½è¡Œã€‚
+
+
+When there is only one single-line text input field in a form, the user agent should accept Enter in that field as a request to submit the form.
+å½“ä¸€ä¸ª form å…ƒç´ ä¸­åªæœ‰ä¸€ä¸ªè¾“å…¥æ¡†æ—¶ï¼Œåœ¨è¯¥è¾“å…¥æ¡†ä¸­æŒ‰ä¸‹å›è½¦åº”æäº¤è¯¥è¡¨å•ã€‚å¦‚æœå¸Œæœ›é˜»æ­¢è¿™ä¸€é»˜è®¤è¡Œä¸ºï¼Œå¯ä»¥åœ¨ æ ‡ç­¾ä¸Šæ·»åŠ  @submit.native.preventã€‚
+el-from åŠ ä¸Š @submit.native.prevent
