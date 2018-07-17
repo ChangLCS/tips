@@ -35,8 +35,8 @@ const doJson = (arr) => {
 
       for (let i = 0; i < data.length; i += 1) {
         const item = data[i];
-        // retList = retList.concat(Object.assign({}, item, { url: getUrl(item.url) })); //  取全部
-        retList = retList.concat({ id: getId(item.url) }); //  取id
+        retList = retList.concat(Object.assign({}, item, { url: getUrl(item.url) })); //  取全部
+        // retList = retList.concat({ id: getId(item.url) }); //  取id
       }
 
       // console.log(`文件    ${filePath}    OK！`);
