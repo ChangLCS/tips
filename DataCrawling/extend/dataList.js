@@ -77,17 +77,11 @@
 
   const getPage = (pageIndex) => {
     try {
-      console.log('重新进来了', pageIndex);
-
       $changInput.value = pageIndex;
       setTimeout(() => {
-        console.log('pageIndex <= total && isGo', pageIndex <= total && isGo);
         if (pageIndex <= total && isGo) {
-          const $list = $content.querySelectorAll('a');
-          console.log(';$list', $list);
-
           const contenthtml = document.getElementById('content').innerHTML;
-          if (contenthtml.indexOf('服务器') > -1) {
+          if (contenthtml.indexOf('服务器') > -1 || contenthtml.indexOf('loading') > -1) {
             GotoStop();
 
             //  5s 之后重新启动
@@ -97,11 +91,12 @@
             return;
           }
 
+          const $list = $content.querySelectorAll('a');
           if ($list && $list.length) {
             listLength = $list.length;
             setHtml(0, pageIndex);
           } else {
-            console.error('页码报错，当前页码', pageIndex, new Date().toString());
+            console.error('列表返回错误！页码报错，当前页码', pageIndex, new Date().toString());
             GotoStop();
 
             //  5s 之后重新启动
@@ -128,7 +123,7 @@
         $list[index].click();
         setTimeout(() => {
           const contenthtml = document.getElementById('content').innerHTML;
-          if (contenthtml.indexOf('服务器') > -1) {
+          if (contenthtml.indexOf('服务器') > -1 || contenthtml.indexOf('loading') > -1) {
             GotoStop();
 
             //  5s 之后重新启动
@@ -137,6 +132,7 @@
             }, 5000);
             return;
           }
+
           const html = document.querySelector('.listmain').innerHTML;
           const data = {
             id,
@@ -171,7 +167,6 @@
                       console.log('后退了');
 
                       setBaseTotal();
-                      console.log('充值头部');
 
                       getPage(pageIndex + 1);
                     }, 2000);
