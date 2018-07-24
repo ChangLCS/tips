@@ -64,14 +64,14 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': 0,
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': 0,
     'no-unused-vars': 0,
     'arrow-parens': ['error', 'always'],
     'no-mixed-operators': 'off',
     'max-len': [
       'error',
       {
-        code: 20,
+        code: 100,
         ignorePattern: '<.*>$',
         ignoreComments: true,
         ignoreTrailingComments: true,
