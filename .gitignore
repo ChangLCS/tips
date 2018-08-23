@@ -1,3 +1,29 @@
-node_modules/*
+node_modules/
+dist/
+public/
+release/
 
-.vscode/*
+.temp/
+.vscode/
+.settings/
+.idea/
+
+.project
+.classpath
+
+/platforms/android/.gradle
+/platforms/android/app/build
+/platforms/android/build
+
+/platforms/ios/build
+/platforms/ios/Pods
+
+Podfile.lock
+project.pbxproj
+
+local.properties
+
+*.apk
+*.ipa
+
+# *.iml

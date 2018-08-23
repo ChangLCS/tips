@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/liangxiande/project/release/android/MiPush_Client_Android_20180326/PushDemo4Studio/PushDemo/libs/MiPush_SDK_Client_3_6_2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="31fb06fa79cea323bc2bfbaa6497f0837f549812">
+        <dex dex="/home/liangxiande/project/release/android/MiPush_Client_Android_20180326/PushDemo4Studio/PushDemo/build/intermediates/pre-dexed/debug/MiPush_SDK_Client_3_6_2_c88a4e1e44cda7b3c6b5f9fbed469139a4163561.jar" />
+    </item>
+
+</items>

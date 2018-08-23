@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MiPushDemo
+
+  Created by shen yang on 14-4-24.
+  Copyright (c) 2014年 Xiaomi. All rights reserved.
+*/
+
+"title" = "hello mipush";
+"button" = "hit me";
+"param" = "param:%@";
