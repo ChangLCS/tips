@@ -21,3 +21,12 @@
 ```
 
 **<font color="red">不能用"，得用\\'才能加载成功，反正没搞明白为什么。。。</font>**
+
+
+### ios 真机调试
+如果报错
+```
+app install failed 
+an unknown error has occurred
+```
+那就要在启动之前先clean一下，直接在菜单栏 Product => Clean
