@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/liangxiande/project/release/android/MiPush_Client_Android_20180326/PushDemo4Studio/PushDemo/libs/MiPush_SDK_Client_3_6_2.jar"
+        jar="F:\Work\tips-github\app\MiPush_Client_Android_20180613\PushDemo4Studio\PushDemo\libs\MiPush_SDK_Client_3_6_9.jar"
         jumboMode="false"
-        revision="21.1.2"
-        sha1="31fb06fa79cea323bc2bfbaa6497f0837f549812">
-        <dex dex="/home/liangxiande/project/release/android/MiPush_Client_Android_20180326/PushDemo4Studio/PushDemo/build/intermediates/pre-dexed/debug/MiPush_SDK_Client_3_6_2_c88a4e1e44cda7b3c6b5f9fbed469139a4163561.jar" />
+        revision="26.0.0"
+        sha1="e3e94e02cb0d82e3a10488750d758ad3770d79b6">
+        <dex dex="F:\Work\tips-github\app\MiPush_Client_Android_20180613\PushDemo4Studio\PushDemo\build\intermediates\pre-dexed\debug\MiPush_SDK_Client_3_6_9_29b07184e0c3ebf4f5e3d2048be5c24415dbbe5b.jar" />
     </item>
 
 </items>

@@ -1,18 +1,26 @@
 [
     {
-        "merged": "/usr/local/src/project/push/PushDemo/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/usr/local/src/project/push/PushDemo/res/layout/activity_main.xml"
+        "merged": "F:\\home\\mi\\下载\\MiPush_Client_Android_20180604\\PushDemo4Studio\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\set_time_dialog.xml",
+        "source": "F:\\home\\mi\\下载\\MiPush_Client_Android_20180604\\PushDemo4Studio\\PushDemo\\res\\layout\\set_time_dialog.xml"
     },
     {
-        "merged": "/usr/local/src/project/push/PushDemo/build/intermediates/res/merged/debug/layout/set_time_dialog.xml",
-        "source": "/usr/local/src/project/push/PushDemo/res/layout/set_time_dialog.xml"
+        "merged": "F:\\usr\\local\\src\\project\\push\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\usr\\local\\src\\project\\push\\PushDemo\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "/home/mi/下载/MiPush_Client_Android_20180604/PushDemo4Studio/PushDemo/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/home/mi/下载/MiPush_Client_Android_20180604/PushDemo4Studio/PushDemo/res/layout/activity_main.xml"
+        "merged": "F:\\usr\\local\\src\\project\\push\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\set_time_dialog.xml",
+        "source": "F:\\usr\\local\\src\\project\\push\\PushDemo\\res\\layout\\set_time_dialog.xml"
     },
     {
-        "merged": "/home/mi/下载/MiPush_Client_Android_20180604/PushDemo4Studio/PushDemo/build/intermediates/res/merged/debug/layout/set_time_dialog.xml",
-        "source": "/home/mi/下载/MiPush_Client_Android_20180604/PushDemo4Studio/PushDemo/res/layout/set_time_dialog.xml"
+        "merged": "F:\\Work\\tips-github\\app\\MiPush_Client_Android_20180613\\PushDemo4Studio\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\Work\\tips-github\\app\\MiPush_Client_Android_20180613\\PushDemo4Studio\\PushDemo\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "F:\\Work\\tips-github\\app\\MiPush_Client_Android_20180613\\PushDemo4Studio\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\set_time_dialog.xml",
+        "source": "F:\\Work\\tips-github\\app\\MiPush_Client_Android_20180613\\PushDemo4Studio\\PushDemo\\res\\layout\\set_time_dialog.xml"
+    },
+    {
+        "merged": "F:\\home\\mi\\下载\\MiPush_Client_Android_20180604\\PushDemo4Studio\\PushDemo\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\home\\mi\\下载\\MiPush_Client_Android_20180604\\PushDemo4Studio\\PushDemo\\res\\layout\\activity_main.xml"
     }
 ]
