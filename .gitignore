@@ -18,6 +18,8 @@ release/
 /platforms/ios/build
 /platforms/ios/Pods
 
+WeexDemo.xcworkspace
+
 Podfile.lock
 project.pbxproj
 
@@ -27,3 +29,5 @@ local.properties
 *.ipa
 
 # *.iml
+
+# package-lock.json
