@@ -83,4 +83,109 @@ Please enter the executor: docker, parallels, ssh, virtualbox, kubernetes, docke
 Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 ```
 
-![gitlab-register.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-register.png) <br> 这是我填的内容，可以参考一下。<br> 现在这样就算成功了，直接进去 gitlab 上的 _Setting > CI/CD_ 页面，可以看到 <br> ![gitlab-runner.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner.png) <br> 之后只要在自己的项目根目录编辑好 _.gitlab-ci.yml_ ，往线上推就行了，我写了一个很随便的，里面都是用命令的，很好上手，下面是最简单的演示 <br> ![gitlab-ci.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-ci.png) <br>
+![gitlab-register.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-register.png) <br> 这是我填的内容，可以参考一下。<br> 现在这样就算成功了，直接进去 gitlab 上的 _Setting > CI/CD_ 页面，可以看到 ![gitlab-runner.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner.png) <br> 之后只要在自己的项目根目录编辑好 _.gitlab-ci.yml_ ，往线上推就行了，我写了一个很随便的，里面都是用命令的，很好上手，下面是最简单的演示 ![gitlab-ci.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-ci.png)
+
+### root 用户安装 node-sass 总是失败，提示权限问题
+
+```
+npm config set unsafe-perm=true
+```
+
+这是 npm 的权限设置，root 用户默认是 false，其它用户是 true，将其改成 true，用
+
+```
+npm config list
+```
+
+确认一下是否修改成功
+
+![npm-unsafe-perm=true.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/npm-unsafe-perm=true.png) <br> 之后再安装应该就可以了
+
+### cross-env
+
+用 5.0.2 的版本，不然在 liunx 服务器会报错
+
+### webpack
+
+服务器 webpack 打包，要全局安装 webpack 跟 webpack-cli 先，不然 npm run build 无效
+
+```
+npm i webpack -g && npm i webpack-cli -g
+```
+
+### git
+
+- 前往 [https://mirrors.edge.kernel.org/pub/software/scm/git/](https://mirrors.edge.kernel.org/pub/software/scm/git/)，下载最新的 git，或者自己找个版本，找 _.tar.gz_ 后缀的
+
+```
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
+```
+
+- 解压
+
+```
+tar -zxvf git-2.18.0.tar.gz
+```
+
+- 进入解压出来的 git 文件夹
+
+```
+make configure
+```
+
+- - 如果报错了 `/bin/sh: autoconf: command not found`
+- 安装 autoconf automake libtool
+
+```
+yum install install autoconf automake libtool
+```
+
+- 打印出现 `GEN configure` 即正常，然后进行编译
+
+```
+./configure --prefix=/usr/local/git --with-iconv --with-curl --with-expat=/usr/local/lib
+```
+
+```
+make && make install
+```
+
+- - 如果报错 `cache.h:19:18: fatal error: zlib.h: No such file or directory` 安装 zlib，zlib-devel 后再执行 `make && make install`
+
+```
+yum install zlib
+yum install zlib-devel
+```
+
+- 装完了之后要配置全局变量
+
+```
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/git/bin
+```
+
+- 重置全局变量
+
+```
+source /etc/bashrc
+```
+
+- 最后用 `git -v` 看一下命令是否出来了
+
+### 命令行头部加颜色、日期、绝对路径
+
+- 前往 `~` 进入 `cd .bash_profile`，以下代码复制到最后一行，如下
+
+```
+export PS1="\e[36m\u\e[0m@\e[32m\h \e[0m \d \t \e[43\e[0m:\e[34m\w \e[0m\$ "
+```
+
+![. .bash_profile](https://raw.githubusercontent.com/ChangLCS/tips/master/image/bash_profile.png)
+
+- 在执行下方命令另配置生效
+
+```
+. .bash_profile
+```
+
+- 结果如图所示 <br> ![bash_profile-return](https://raw.githubusercontent.com/ChangLCS/tips/master/image/bash_profile-return.png)
+- 可前往 [漂亮的 Linux 命令提示符](https://www.cnblogs.com/cofear/p/PS1.html) 参考

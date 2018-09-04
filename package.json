@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ChangLCS/tips#readme",
   "dependencies": {
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "node-sass": "^4.9.3"
   }
 }
