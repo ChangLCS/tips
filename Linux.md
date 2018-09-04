@@ -105,14 +105,6 @@ npm config list
 
 用 5.0.2 的版本，不然在 liunx 服务器会报错
 
-### webpack
-
-服务器 webpack 打包，要全局安装 webpack 跟 webpack-cli 先，不然 npm run build 无效
-
-```
-npm i webpack -g && npm i webpack-cli -g
-```
-
 ### git
 
 - 前往 [https://mirrors.edge.kernel.org/pub/software/scm/git/](https://mirrors.edge.kernel.org/pub/software/scm/git/)，下载最新的 git，或者自己找个版本，找 _.tar.gz_ 后缀的
@@ -137,7 +129,7 @@ make configure
 - 安装 autoconf automake libtool
 
 ```
-yum install install autoconf automake libtool
+yum install autoconf automake libtool
 ```
 
 - 打印出现 `GEN configure` 即正常，然后进行编译
