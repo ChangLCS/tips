@@ -140,6 +140,8 @@ yum install autoconf automake libtool
 
 ```
 make && make install
+make prefix=/usr all doc info
+make prefix=/usr install install-doc install-html install-info
 ```
 
 - - 如果报错 `cache.h:19:18: fatal error: zlib.h: No such file or directory` 安装 zlib，zlib-devel 后再执行 `make && make install`
@@ -147,6 +149,25 @@ make && make install
 ```
 yum install zlib
 yum install zlib-devel
+```
+
+- - 如果报错 `/bin/sh: line 1: asciidoc: command not found` 安装 `asciidoc` (最好是安装 git 之前先把这些全做一遍)
+
+```
+wget https://nchc.dl.sourceforge.net/project/asciidoc/asciidoc/8.6.9/asciidoc-8.6.9.tar.gz
+cd asciidoc-8.6.9
+./configure
+make install
+yum install xmlto
+```
+
+- - 如果报错 `/bin/sh: line 1: docbook2x-texi: command not found`，安装
+
+```
+yum install docbook2X
+cd /usr/bin/
+ln -s db2x_docbook2texi docbook2x-texi
+ln -s db2x_docbook2man docbook2x-man
 ```
 
 - 装完了之后要配置全局变量
@@ -162,6 +183,20 @@ source /etc/bashrc
 ```
 
 - 最后用 `git -v` 看一下命令是否出来了
+
+### git fatal: Unable to find remote helper for 'https'
+
+```
+yum install curl-devel
+```
+
+- 然后前往 git 安装好的目录，如
+
+```
+cd /usr/local/src/git-2.18.0/
+./configure --prefix=/usr/local/git -with-curl=/usr
+make && make install
+```
 
 ### 命令行头部加颜色、日期、绝对路径
 
@@ -181,3 +216,18 @@ export PS1="\e[36m\u\e[0m@\e[32m\h \e[0m \d \t \e[43\e[0m:\e[34m\w \e[0m\$ "
 
 - 结果如图所示 <br> ![bash_profile-return](https://raw.githubusercontent.com/ChangLCS/tips/master/image/bash_profile-return.png)
 - 可前往 [漂亮的 Linux 命令提示符](https://www.cnblogs.com/cofear/p/PS1.html) 参考
+
+### Linux 安装 nvm 以控制 nodejs 版本
+
+- 前往 [git 地址](https://github.com/creationix/nvm/releases) 找到 `nvm` 安装包版本，然后输入命令，如下，将版本号换成自己想要的
+
+```
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+```
+
+- 重置全局变量，再查看是否安装成功或者直接安装需要版本的 nodejs
+
+```
+source ~/.bashrc
+nvm install node
+```
