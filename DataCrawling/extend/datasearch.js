@@ -5,6 +5,9 @@
 // @version     1.0
 // @grant       Chang
 // ==/UserScript==
+
+/* eslint-disable */
+
 (function() {
   const baseHost = 'app1.sfda.gov.cn';
   const baseName = 'datasearch';
@@ -76,6 +79,8 @@
   //  真正开始爬取数据
   const GotoDo = (value) => {
     const getPage = (pageIndex) => {
+      console.log('content,');
+
       try {
         $changInput.value = pageIndex;
         if (pageIndex <= total && isGo) {
@@ -119,7 +124,9 @@
                 if ($imgList && $imgList.length) {
                   $imgList[2].click();
                   setTimeout(() => {
-                    setBaseTotal();
+                    // setBaseTotal();
+                    console.log('注释了setBaseTotal');
+
                     getPage(pageIndex + 1);
                   }, 2000);
                 } else {
@@ -181,7 +188,8 @@
     setTimeout(() => {
       document.getElementById('goInt').value = $changInput.value;
 
-      setBaseTotal();
+      // setBaseTotal();
+      console.log('setBaseTotal 猪死后的');
 
       const $footer = $content.querySelectorAll('table')[4];
       const $footerTd = $footer.querySelectorAll('td');
