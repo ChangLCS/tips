@@ -83,6 +83,10 @@ Please enter the executor: docker, parallels, ssh, virtualbox, kubernetes, docke
 Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 ```
 
+```
+gitlab-ci-multi-runner start           # gitLab-runner后台运行
+```
+
 ![gitlab-register.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-register.png) <br> 这是我填的内容，可以参考一下。<br> 现在这样就算成功了，直接进去 gitlab 上的 _Setting > CI/CD_ 页面，可以看到 ![gitlab-runner.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner.png) <br> 之后只要在自己的项目根目录编辑好 _.gitlab-ci.yml_ ，往线上推就行了，我写了一个很随便的，里面都是用命令的，很好上手，下面是最简单的演示 ![gitlab-ci.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-ci.png)
 
 ### root 用户安装 node-sass 总是失败，提示权限问题
