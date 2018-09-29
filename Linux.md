@@ -235,3 +235,22 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 source ~/.bashrc
 nvm install node
 ```
+
+### pm2 监控 node
+
+正常使用，只要用几个基本，需要其它另外使用 `pm2 -h` 查看程序帮助，这个里面已经很详细了，学好英文还是很重要的
+
+```
+pm2 start app.js -n app --watch
+app.js        # 启动程序的路径
+-n app        # pm2中启动程序的名称，最好要配置，方便管理
+--watch       # 监听启动的程序，一旦文件改动自动重启
+
+pm2 list      # 查看当前启动的所有程序
+pm2 monit     # 实时监控所有程序的运行状态
+pm2 stop [name|id]      # 暂停某一个程序的运行
+pm2 stop all            # 暂停所有程序的运行
+pm2 del [name|id]       # 删除某一个程序
+pm2 kill                # 删除所有程序
+————  stop 跟 del|kill 的概念不一样的，试一下就知道了
+```
