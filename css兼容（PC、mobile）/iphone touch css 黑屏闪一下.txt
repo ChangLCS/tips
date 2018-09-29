@@ -1,19 +1,19 @@
-������ֺ�ɫ�����Ľ����-webkit-tap-highlight-color:rgba(0,0,0,0)
+点击出现黑色背景的解决：-webkit-tap-highlight-color:rgba(0,0,0,0)
  
 
-���ֻ��ϣ�iphone�������ť��ʱ����Ļ�ܻ�����һ�£�����ҳ�濴�����ܲ��Ѻ�Ҳ�������������������һ��css�ͽ���ˣ�
+在手机上（iphone）点击按钮的时候，屏幕总会闪动一下，这让页面看起来很不友好也不流畅。解决方案加了一句css就解决了：
 
 -webkit-tap-highlight-color:rgba(0,0,0,0) 
-//webkit��ƻ����������棬tap�����highlight����������color��ɫ����ɫ����ֵ���ڡ�
-ԭ�����£�
+//webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节。
+原因如下：
 
-���ƶ����ϣ����¼�������Ԫ�ر������ʱ��ᱻ������ʾ����-webkit-tap-highlight-color���Ի��ڵ��û����iOS��Safari������е����ӻ�JavaScript�Ŀɵ����Ԫ��ʱ��������ʾ�ĸ�����ɫ��
+在移动端上，有事件监听的元素被点击的时候会被高亮显示，而-webkit-tap-highlight-color属性会在当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
 
-�����Կ���ֻ����͸���ȡ����δ����͸���ȣ�iOS Safariʹ��Ĭ�ϵ�͸���ȡ���͸������Ϊ0�������ô����ԣ���͸������Ϊ1��Ԫ���ڵ��ʱ���ɼ���
-
-
+该属性可以只设置透明度。如果未设置透明度，iOS Safari使用默认的透明度。当透明度设为0，则会禁用此属性；当透明度设为1，元素在点击时不可见。
 
 
 
 
-���Բ��ͣ�https://www.cnblogs.com/xiangru0921/p/6514100.html��
+
+
+来自博客（https://www.cnblogs.com/xiangru0921/p/6514100.html）
