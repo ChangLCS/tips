@@ -4,8 +4,6 @@
  * @since 真正搭项目还是得用框架啊，不然一手一手来太麻烦了，当几个简单的接口进行访问就得做很多个判断条件来让接口调成功，还有参数的接收
  */
 
-'use strict';
-
 const path = require('path');
 const fs = require('fs');
 
@@ -45,7 +43,7 @@ const doJson = (arr) => {
       if ((index + 1) % 100 === 0) {
         const fileName = path.resolve(__dirname, 'src/data/', `${new Date().getTime()}.json`);
         const newFile = fs.createWriteStream(fileName);
-        newFile.write(JSON.stringify(retList), 'UTF8', (error, data) => {
+        newFile.write(JSON.stringify(retList), 'UTF8', () => {
           newFile.end();
           retList = [];
           saveJson(index + 1);
@@ -63,7 +61,7 @@ const doJson = (arr) => {
       retList = [];
       console.log('----------------');
       console.log(`创建文件    ${fileName}    OK！`);
-      console.log(`全部OK！`);
+      console.log('全部OK！');
     }
   };
   saveJson(0);
