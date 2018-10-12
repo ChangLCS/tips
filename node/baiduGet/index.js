@@ -54,14 +54,14 @@ const getPoint = (index, list, city, $baseIndex) => {
             retList[$baseIndex].data[index] = [
               item[0],
               item[1],
-              `${data.location.lng},${data.location.lat}`,
+              item[2] || `${data.location.lng},${data.location.lat}`,
               data.level,
             ];
           } else {
             retList[$baseIndex].data[index] = [
               item[0],
               item[1],
-              '',
+              item[2] || '',
               '',
               '',
               `${data.location.lng},${data.location.lat}`,
