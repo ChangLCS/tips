@@ -254,3 +254,14 @@ pm2 del [name|id]       # 删除某一个程序
 pm2 kill                # 删除所有程序
 ————  stop 跟 del|kill 的概念不一样的，试一下就知道了
 ```
+
+###### 使用 pm2-logrotate 分割日志
+
+```
+pm2 install pm2-logrotate     # 安装
+pm2 set pm2-logrotate:max_size 4096K      # 配置只要日志文件大于 4096K 则进行切割
+```
+
+```
+pm2 log --lines 1000    # 查看最近的1000条日志
+```
