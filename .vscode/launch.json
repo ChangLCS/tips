@@ -7,8 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}\\DataCrawling\\server\\dojson.js"
+      "name": "获取医院地址",
+      "program": "${workspaceFolder}\\node\\baiduGet\\index.js"
     },
     {
       "type": "node",

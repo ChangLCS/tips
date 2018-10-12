@@ -15,3 +15,7 @@ google-closure-compiler-js TOTALDATA.1.js > TOTALDATA.1.min.js
 npm install uglify-js -g
 uglifyjs js/mapData.js > js/mapData.min.js
 ```
+
+### node-xlsx nodejs 读取、编辑 xlsx 模块 (node/baiduGet.js)有用到该模块，可参考
+
+[基础教程 https://blog.csdn.net/luo200618/article/details/52439992](https://blog.csdn.net/luo200618/article/details/52439992)

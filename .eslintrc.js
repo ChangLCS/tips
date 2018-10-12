@@ -72,7 +72,7 @@ module.exports = {
       'error',
       {
         code: 100,
-        ignorePattern: '<.*>$',
+        ignorePattern: '(<.*>$)|(//.*)',
         ignoreComments: true,
         ignoreTrailingComments: true,
         ignoreUrls: true,
@@ -81,5 +81,6 @@ module.exports = {
         ignoreRegExpLiterals: true,
       },
     ],
+    'arrow-body-style': ['error', 'as-needed'],
   },
 };
