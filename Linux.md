@@ -89,6 +89,14 @@ gitlab-ci-multi-runner start           # gitLab-runner后台运行
 
 ![gitlab-register.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-register.png) <br> 这是我填的内容，可以参考一下。<br> 现在这样就算成功了，直接进去 gitlab 上的 _Setting > CI/CD_ 页面，可以看到 ![gitlab-runner.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner.png) <br> 之后只要在自己的项目根目录编辑好 _.gitlab-ci.yml_ ，往线上推就行了，我写了一个很随便的，里面都是用命令的，很好上手，下面是最简单的演示 ![gitlab-ci.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-ci.png)
 
+### tips
+经常遇到gitlab-runner权限不够，可以直接通过
+```
+vim /etc/passwd 
+```
+改变 gitlab-runner 的权限变成 root 权限，这样文件的创建就没有任何问题了（个人做法，慎用）
+![gitlab-ci-root.jpg](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner-root.jpg)
+
 ### root 用户安装 node-sass 总是失败，提示权限问题
 
 ```
@@ -235,6 +243,9 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 source ~/.bashrc
 nvm install node
 ```
+如果其它用户要使用，记得`vim /etc/profile`，将`$NVM_DIR`配置到全局变量，如图
+![nvm-path.jpg](https://raw.githubusercontent.com/ChangLCS/tips/master/image/nvm-path.jpg)
+
 
 ### pm2 监控 node
 
