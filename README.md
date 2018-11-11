@@ -23,3 +23,5 @@ http://www.cnblogs.com/botoo/p/8302531.html
 ```
 https://registry.npmjs.org/
 ```
+
+## [Linux 遇到的一些小问题](https://github.com/ChangLCS/tips/blob/master/Linux.md)
