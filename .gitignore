@@ -28,6 +28,9 @@ local.properties
 *.apk
 *.ipa
 
+json/
+json*/
+
 # *.iml
 
 package-lock.json
