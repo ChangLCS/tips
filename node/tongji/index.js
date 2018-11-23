@@ -2,10 +2,10 @@
  * @description 给扒下来的音乐改成自己要的名字
  */
 
-'use strict';
-
 const path = require('path');
 const fs = require('fs');
+
+const dateFormatter = require('../../js/dateFormatter');
 
 const src = path.resolve(__filename, '../json/');
 
@@ -20,17 +20,37 @@ const gz = [];
 const sz = [];
 const cn = [];
 
+const www = [];
+
+const countJSON = {};
+
 for (let i = 0; i < dirArr.length; i += 1) {
   const item = dirArr[i];
   const date = new Date(Number(item.replace('.json', '')));
-  if (date.getHours() === 16) {
+  if (
+    [6, 7, 8, 9, 10, 11, 12].indexOf(date.getHours()) > -1 &&
+    date.getDate() === new Date().getDate()
+  ) {
     const text = fs.readFileSync(path.resolve(src, item), 'utf-8');
     if (text.indexOf('baidu') > -1) {
       try {
         const json = JSON.parse(text);
         arr.push(json);
+
+        if (countJSON[json.href]) {
+          countJSON[json.href] = Number(countJSON[json.href]) + 1;
+        } else {
+          countJSON[json.href] = 1;
+        }
+
+        if (www.indexOf(json.href) === -1) {
+          www.push(json.href);
+        }
+
         if (text.indexOf('"href":"http://qzb.dzkxqd.com/"') > -1) {
           zhuye.push(json);
+          // console.log('dateFormatter', dateFormatter.formatter(date, 'YYYY-MM-DD HH:MM:SS'));
+
           if (text.indexOf('CN|') > -1) {
             cn.push(json);
           }
@@ -53,7 +73,9 @@ for (let i = 0; i < dirArr.length; i += 1) {
         if (text.indexOf('深圳') > -1) {
           sz.push(json);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.error(error.message);
+      }
     }
   }
 }
@@ -67,4 +89,18 @@ console.log('广州', gz.length);
 console.log('深圳', sz.length);
 console.log('arr', arr.length);
 
-fs.writeFileSync(path.resolve(__filename, '../arr.json'), JSON.stringify(arr));
+// console.log('www', JSON.stringify(www));
+console.log('www', JSON.stringify(www.length));
+
+console.log('countJSON', countJSON);
+
+const keyValues = Object.entries(countJSON);
+for (let i = 0; i < keyValues.length; i += 1) {
+  const item = keyValues[i];
+  console.log(item[0]);
+  console.log(item[1]);
+}
+
+console.log('end');
+
+// fs.writeFileSync(path.resolve(__filename, '../arr.json'), JSON.stringify(arr));
