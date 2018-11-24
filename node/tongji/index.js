@@ -1,5 +1,5 @@
 /**
- * @description 给扒下来的音乐改成自己要的名字
+ * @description 百度统计显示推广页的有效参数
  */
 
 const path = require('path');
