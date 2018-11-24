@@ -31,6 +31,9 @@ local.properties
 json/
 json*/
 
+arr*.json
+result*.json
+
 # *.iml
 
 package-lock.json

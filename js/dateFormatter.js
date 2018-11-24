@@ -27,8 +27,9 @@ const getDateTime = (str) => {
  * 传入时间或文本，转成想要的格式
  * @param {*} str
  * @param {*} type default YYYY-MM-DD
+ * @param {*} split 日期与时间中间的间隔用什么顶替，默认是一个空字符串 ' '
  */
-const formatter = (str, type = 'YYYY-MM-DD') => {
+const formatter = (str, type = 'YYYY-MM-DD', dSplit = '-', tSplit = ' ', mSplit = ':') => {
   if (!str) return null;
   const time = getDateTime(str);
   if (!time) return null;
@@ -40,19 +41,28 @@ const formatter = (str, type = 'YYYY-MM-DD') => {
   let HH = String(date.getHours());
   let mm = String(date.getMinutes());
   let SS = String(date.getSeconds());
+  let MMM = String(date.getMilliseconds());
   if (MM.length < 2) MM = `0${MM}`;
   if (dd.length < 2) dd = `0${dd}`;
   if (HH.length < 2) HH = `0${HH}`;
   if (mm.length < 2) mm = `0${mm}`;
   if (SS.length < 2) SS = `0${SS}`;
+  if (MMM.length < 2) {
+    MMM = `00${MMM}`;
+  } else if (MMM.length < 2) {
+    MMM = `0${MMM}`;
+  }
 
   let ret = '';
   switch (type.toUpperCase()) {
     case 'YYYY-MM-DD':
-      ret = `${yy}-${MM}-${dd}`;
+      ret = `${yy}${dSplit}${MM}${dSplit}${dd}`;
       break;
     case 'YYYY-MM-DD HH:MM:SS':
-      ret = `${yy}-${MM}-${dd} ${HH}:${mm}:${SS}`;
+      ret = `${yy}${dSplit}${MM}${dSplit}${dd}${tSplit}${HH}${mSplit}${mm}${mSplit}${SS}`;
+      break;
+    case 'YYYY-MM-DD HH:MM:SS.MMM':
+      ret = `${yy}${dSplit}${MM}${dSplit}${dd}${tSplit}${HH}${mSplit}${mm}${mSplit}${SS}.${MMM}`;
       break;
     default:
       break;

@@ -33,7 +33,7 @@ const countJSON = {};
 for (let i = 0; i < dirArr.length; i += 1) {
   const item = dirArr[i];
   const date = new Date(Number(item.replace('.json', '')));
-  if ([15].indexOf(date.getHours()) > -1 && date.getDate() === new Date().getDate()) {
+  if ([6, 7, 8, 9].indexOf(date.getHours()) > -1 && date.getDate() === new Date().getDate()) {
     const text = fs.readFileSync(path.resolve(src, item), 'utf-8');
     if (text.indexOf('baidu') > -1) {
       try {
@@ -128,4 +128,37 @@ console.log('countJSON', countJSON);
 //   console.log(item[1]);
 // }
 
-fs.writeFileSync(path.resolve(__filename, '../arr.json'), JSON.stringify(arr));
+const arrivalRate = (100 * showArr.length) / baiduMobileArr.length;
+const bsgsRate = (100 * (bj.length + sh.length + gz.length + sz.length)) / baiduMobileArr.length;
+
+const nowDate = dateFormatter.formatter(new Date(), 'yyyy-mm-dd hh:mm:ss.mmm', '-', 'T', '.');
+
+const ret = {
+  到达推广页的概率: `${arrivalRate}%`,
+  北上广深的占比: `${bsgsRate}%`,
+  审核页的占比: `${(100 * shenheArr.length) / baiduMobileArr.length}%`,
+  网络原因或者用户自己关闭没法到达: `${100 - arrivalRate - bsgsRate}%`,
+  time: nowDate,
+  主页: inArr.length,
+  用百度app进入的有效主页: baiduMobileArr.length,
+  推广: showArr.length,
+  审核: shenheArr.length,
+  北京: bj.length,
+  上海: sh.length,
+  广州: gz.length,
+  深圳: sz.length,
+  arr: arr.length,
+  www: www,
+  countJSON: countJSON,
+};
+
+/**
+ * 文件夹在命名的时候不能包含下列字符：
+ * 【\ 】【 / 】 ：这两个符号代表路径，如果文件夹（目录）中也包含这些的话，地址会混淆不清，无法区分
+ * 【: 】：英文的冒号是访问协议和传输的符号，会跟网址等混淆。
+ * 【*】【？】：这是通配符，在搜索文件的时候使用，所以不能使用。
+ * 【<】【> 】【| 】【"】 ：这些符号在编程的时候经常用到函数中作为运算符等，避免程序出错，故而这些符号也不能作为文件或文件夹的名称。
+ */
+fs.writeFileSync(path.resolve(__filename, `../result_${nowDate}.json`), JSON.stringify(ret));
+
+// fs.writeFileSync(path.resolve(__filename, `../arr_${nowDate}.json`), JSON.stringify(arr));
