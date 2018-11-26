@@ -30,10 +30,17 @@ const baiduMobileArr = []; //  百度手机app
 
 const countJSON = {};
 
+const start = 0; //  开始小时
+const end = 24; //  结束小时
+const hourArr = [];
+for (let i = start; i < end; i += 1) {
+  hourArr.push(i);
+}
+
 for (let i = 0; i < dirArr.length; i += 1) {
   const item = dirArr[i];
   const date = new Date(Number(item.replace('.json', '')));
-  if ([6, 7, 8, 9].indexOf(date.getHours()) > -1 && date.getDate() === new Date().getDate()) {
+  if (hourArr.indexOf(date.getHours()) > -1 && date.getDate() === new Date().getDate()) {
     const text = fs.readFileSync(path.resolve(src, item), 'utf-8');
     if (text.indexOf('baidu') > -1) {
       try {
@@ -151,6 +158,8 @@ const ret = {
   www: www,
   countJSON: countJSON,
 };
+
+console.log('ret', ret);
 
 /**
  * 文件夹在命名的时候不能包含下列字符：
