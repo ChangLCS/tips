@@ -51,7 +51,7 @@
 
   const $content = document.getElementById('content'); // 主要操作区域
 
-  const $drugDom = document.querySelectorAll('#ta3 tr');
+  const $drugDom = document.querySelectorAll('#ta1 tr');
   const $drugData = {};
   for (let i = 0; i < $drugDom.length; i += 1) {
     const $item = $drugDom[i];
@@ -79,8 +79,6 @@
   //  真正开始爬取数据
   const GotoDo = (value) => {
     const getPage = (pageIndex) => {
-      console.log('content,');
-
       try {
         $changInput.value = pageIndex;
         if (pageIndex <= total && isGo) {
@@ -99,36 +97,21 @@
               data: retList,
             };
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:9000/pachong', true);
+            xhr.open('POST', 'http://192.168.5.26:9000/pachong', true);
             xhr.setRequestHeader('Content-Type', 'appivation/form-data');
             xhr.send(JSON.stringify(data));
 
-            xhr.onerror = (e) => {
-              console.error('出错了，页码：', pageIndex, new Date().toString());
-              GotoStop();
-
-              //  5s 之后重新启动
-              setTimeout(() => {
-                $changBtn.click();
-              }, 5000);
-            };
             xhr.onreadystatechange = (e) => {
-              console.log('onreadystatechange', e);
-
               //响应信息返回后处理，在页面提示用户
               if (xhr.readyState === 4) {
-                console.log(xhr);
-
                 console.log(pageIndex, '！操作成功啦！现在前往下一页');
                 $imgList = $content.querySelectorAll('img');
                 if ($imgList && $imgList.length) {
                   $imgList[2].click();
                   setTimeout(() => {
-                    // setBaseTotal();
-                    console.log('注释了setBaseTotal');
-
+                    setBaseTotal();
                     getPage(pageIndex + 1);
-                  }, 2000);
+                  }, 5000);
                 } else {
                   console.error('出错了，页码：', pageIndex, new Date().toString());
                   GotoStop();
@@ -188,8 +171,7 @@
     setTimeout(() => {
       document.getElementById('goInt').value = $changInput.value;
 
-      // setBaseTotal();
-      console.log('setBaseTotal 猪死后的');
+      setBaseTotal();
 
       const $footer = $content.querySelectorAll('table')[4];
       const $footerTd = $footer.querySelectorAll('td');
