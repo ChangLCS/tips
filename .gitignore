@@ -30,6 +30,7 @@ local.properties
 
 json/
 json*/
+rename/lib
 
 arr*.json
 result*.json

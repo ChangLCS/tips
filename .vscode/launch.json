@@ -15,12 +15,18 @@
       "request": "launch",
       "name": "启动程序",
       "program": "${workspaceFolder}\\DataCrawling\\server\\index.js"
-    }
+    },
     {
       "type": "node",
       "request": "launch",
       "name": "统计",
       "program": "${workspaceFolder}\\node\\tongji\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "修改扒下来的歌名",
+      "program": "${workspaceFolder}\\node\\rename\\index.js"
     }
   ]
 }
