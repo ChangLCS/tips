@@ -22,4 +22,4 @@ for (let i = 0; i < arr.length; i += 1) {
   // }
 }
 const list = fs.readdirSync(src);
-console.log('list', list);
+console.log('list', JSON.stringify(list));
