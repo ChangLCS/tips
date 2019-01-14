@@ -19,6 +19,8 @@
     return;
   }
 
+  var isFirst = false;
+
   console.log('当前网址：', location.href);
 
   const topdiv = document.createElement('div');
@@ -97,7 +99,7 @@
               data: retList,
             };
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://192.168.5.26:9000/pachong', true);
+            xhr.open('POST', 'http://localhost:9000/pachong', true);
             xhr.setRequestHeader('Content-Type', 'appivation/form-data');
             xhr.send(JSON.stringify(data));
 
@@ -111,7 +113,7 @@
                   setTimeout(() => {
                     setBaseTotal();
                     getPage(pageIndex + 1);
-                  }, 5000);
+                  }, 2000);
                 } else {
                   console.error('出错了，页码：', pageIndex, new Date().toString());
                   GotoStop();
@@ -158,6 +160,8 @@
 
   //  第一次进入点击立即开始触发事件
   const Readload = () => {
+    console.log('$changSelect.selectedIndex', $changSelect.selectedIndex);
+
     if (!$changSelect.selectedIndex) {
       return alert('请选择目录');
     } else if (!$changInput.value) {
@@ -168,6 +172,21 @@
     const text = $changSelect.selectedOptions[0].value;
     const $active = $drugData[text];
     $active.querySelectorAll('td')[3].click();
+
+    isFirst = true;
+    console.log('$changSelect', $changSelect);
+
+    //  如果是经营企业，默认一下批发的搜索条件，之后如果不用就把它给干掉
+    if (isFirst && $changSelect.selectedIndex === 12) {
+      setTimeout(() => {
+        document.querySelector('input[name=COLUMN444]').value = '批发';
+        document.querySelectorAll('input[type=submit]')[26].value = '看一下批发';
+        document.querySelectorAll('input[type=submit]')[26].click();
+      }, 1000);
+
+      isFirst = false;
+    }
+
     setTimeout(() => {
       document.getElementById('goInt').value = $changInput.value;
 
@@ -191,7 +210,7 @@
       setTimeout(() => {
         GotoDo($changInput.value);
       }, 1000);
-    }, 1000);
+    }, 2000);
   };
 
   $changBtn.onclick = Readload;
