@@ -25,3 +25,13 @@ https://registry.npmjs.org/
 ```
 
 ## [Linux 遇到的一些小问题](https://github.com/ChangLCS/tips/blob/master/Linux.md)
+
+## .npmrc 淘宝镜像地址配置
+
+```
+phantomjs_cdnurl=http://cnpmjs.org/downloads
+sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+registry=https://registry.npm.taobao.org
+```
+
+- sass_binary_site 用来安装那个坑爹的 node-sass
