@@ -283,3 +283,30 @@ pm2 log --lines 1000    # 查看最近的1000条日志
 ```
 sz [filename|文件名称]
 ```
+
+### 杀死进程（httpd 举例）
+
+先查看目前所有的 httpd 进程
+
+```
+ps aux | grep httpd
+```
+
+如下所示
+
+```
+root      2091  0.0  0.1   5488  2832 ?        Ss   17:19   0:00 /web/apache//bin/httpd -k restart
+daemon    2475  0.0  0.1 283220  2256 ?        Sl   17:45   0:00 /web/apache//bin/httpd -k restart
+daemon    2476  0.0  0.1 283220  2260 ?        Sl   17:45   0:00 /web/apache//bin/httpd -k restart
+daemon    2477  0.0  0.1 283220  2260 ?        Sl   17:45   0:00 /web/apache//bin/httpd -k restart
+root      2738  0.0  0.0   5500   736 pts/0    S+   17:56   0:00 grep httpd
+```
+
+杀死进程，root 的留着
+
+```
+kill -9 2091
+kill -9 2475
+kill -9 2476
+kill -9 2477
+```
