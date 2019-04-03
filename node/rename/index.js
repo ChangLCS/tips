@@ -1,5 +1,5 @@
 /**
- * @description 给扒下来的音乐改成自己要的名字
+ * @description 给扒下来的音乐改成自己要的名字(QQ音乐)
  */
 
 'use strict';
