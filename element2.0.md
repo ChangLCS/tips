@@ -59,4 +59,7 @@ switch (this.options.dialogSize) {
 }
 ```
 
+- 顺手把`./src/views/`里面 eslint 报错给处理一下
+- `YUploadEdit` oldUrl oldUid 
+
 - <font color="#f00">_修改的时候要自己做好对比，免得改错_</font>
