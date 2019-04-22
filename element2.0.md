@@ -60,8 +60,9 @@ switch (this.options.dialogSize) {
 ```
 
 - 顺手把`./src/views/`里面 eslint 报错给处理一下
-- `YUploadEdit` oldUrl oldUid 
-- `Find` 把日期段查询改成 2.0版本的查询，具体参考 _东莞交易_ 已经改好的，还有要调节一下样式，去掉`el-select-dropdown__item`的样式，并加上
+- `YUploadEdit` oldUrl oldUid
+- `Find` 把日期段查询改成 2.0 版本的查询，具体参考 _东莞交易_ 已经改好的，还有要调节一下样式，去掉`el-select-dropdown__item`的样式，并加上
+
 ```
 /* element2.0 dateRange */
 .find .daterange {
@@ -75,5 +76,8 @@ switch (this.options.dialogSize) {
   }
 }
 ```
+
 - 关于`el-date-picker`，如果报错，要看看日期段是不是数组，已经空值须为''
+- `src/config.js`，`NODE_ENV`改成`VUE_APP_ENV`
+
 - <font color="#f00">_修改的时候要自己做好对比，免得改错_</font>
