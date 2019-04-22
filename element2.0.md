@@ -79,5 +79,15 @@ switch (this.options.dialogSize) {
 
 - 关于`el-date-picker`，如果报错，要看看日期段是不是数组，已经空值须为''
 - `src/config.js`，`NODE_ENV`改成`VUE_APP_ENV`
+- 关于表单验证的问题
+正则替换
+查找正则
+```
+'blur[^']*change'
+```
+替换
+```
+['blur', 'change']
+```
 
 - <font color="#f00">_修改的时候要自己做好对比，免得改错_</font>
