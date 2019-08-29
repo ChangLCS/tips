@@ -54,4 +54,4 @@ ERROR  Failed to compile with 1 errors                                          
 
 ```
 
-- [解决方法 https://github.com/ChangLCS/tips/blob/master/Linux.md](https://github.com/ChangLCS/tips/blob/master/Linux.md)
+- [解决方法 https://github.com/vuejs/vue-cli/issues/2463](https://github.com/vuejs/vue-cli/issues/2463)
