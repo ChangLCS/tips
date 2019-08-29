@@ -1,6 +1,6 @@
 ### 打包多页面配置导致的内存溢出问题
 
-````
+```
 ERROR  Failed to compile with 1 errors                                                                                                                                                                                                                                                              15:20:37
 
   RangeError: Maximum call stack size exceeded
@@ -51,7 +51,7 @@ ERROR  Failed to compile with 1 errors                                          
 
   - extract-chunks.js:44 getNames
     [vue-cli3]/[@vue]/preload-webpack-plugin/src/lib/extract-chunks.js:44:21
-    ```
-````
+
+```
 
 - [解决方法 https://github.com/ChangLCS/tips/blob/master/Linux.md](https://github.com/ChangLCS/tips/blob/master/Linux.md)
