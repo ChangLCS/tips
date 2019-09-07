@@ -1,3 +1,15 @@
+### Linux 配置全局变量
+
+```
+vim /etc/profile
+```
+
+如图所示，编辑 ![Linux 配置全局变量](https://raw.githubusercontent.com/ChangLCS/tips/master/image/linux-export.png)<br> 完成之后，输入一下命令重置权限，测试行不行
+
+```
+source /etc/profile
+```
+
 ### 如果不小心改了 `/etc/profile` 导致所有命令失效
 
 ```
