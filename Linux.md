@@ -323,124 +323,48 @@ kill -9 2476
 kill -9 2477
 ```
 
-### 安装 pptpd 进行 vpn 转发
+### 配置 openVPN
 
-- 1.安装 pptpd
+- 1.使用 [openVPN 安装脚本](https://github.com/ChangLCS/auto-openvpn-install-for-centos-debian-ubuntu) 该方法进行 openVPN 安装
 
-```
-yum install -y pptpd
-```
-
-- 2.对 vpn 进行 IP 段分配
+- 2 安装完成后，修改 conf
 
 ```
-vim /etc/pptpd.conf
+vim /etc/openvpn/server.conf
 ```
 
-写入
+![openvpn-01](https://raw.githubusercontent.com/ChangLCS/tips/master/image/openvpn/openvpn-01.png)<br> 加`;`是注释当前代码，使得不会当前上网不通过 vpn 通过，并加入一句
 
 ```
-localip 193.112.40.37
-remoteip 172.16.1.120-200
+push "route 你的内网ip段 255.255.0.0"
 ```
 
-- 3.指定 DNS 写入文件末尾即可
+查看内网 ip 段方法如下所示，输入`ip addr` <br>![openvpn-02](https://raw.githubusercontent.com/ChangLCS/tips/master/image/openvpn/openvpn-02.png)<br>
+
+- 重启 openvpn
 
 ```
-vim /etc/ppp/options.pptpd
+systemctl restart openvpn@server.service
 ```
 
-写入
+- - tips：一定要开启防火墙
+
+### 服务启动、开机启动、重启
+
+- 启动
 
 ```
-ms-dns 8.8.8.8
-ms-dns 8.8.4.4
+systemctl start firewalld（防火墙，也可以添加其它的服务）
 ```
 
-- 4.配置用户名和密码
+- 开机启动
 
 ```
-vim /etc/ppp/chap-secrets
+systemctl enable firewalld（防火墙，也可以添加其它的服务）
 ```
 
-写入
+- 重启
 
 ```
-# Secrets for authentication using CHAP
-# client        server  secret                  IP addresses
-xingyulin       pptpd    123456                    *
+systemctl restart firewalld（防火墙，也可以添加其它的服务）
 ```
-
-- 5.开启 IP 转发
-
-```
-vim /etc/sysctl.conf
-```
-
-修改
-
-```
-#将“net.ipv4.ip_forward = 0”改为“net.ipv4.ip_forward = 1”
-
-# Controls IP packet forwarding
-net.ipv4.ip_forward = 1
-```
-
-转发生效
-
-```
-sysctl -p
-```
-
-- 6.配置转发策略以及开放常用的端口
-
-```
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-```
-
-```
-iptables -A INPUT -p tcp -m tcp --dport 21 -j ACCEPT
-```
-
-```
-iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
-```
-
-```
-iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-```
-
-```
-iptables -A INPUT -p tcp -m tcp --dport 1723 -j ACCEPT
-```
-
-- 7.重启 pptpd 服务
-
-```
-systemctl start pptpd.service
-```
-
-检查状态 active (running)为成功
-
-```
-systemctl status pptpd.service
-```
-
-返回结果
-
-```
-● pptpd.service - PoPToP Point to Point Tunneling Server
-   Loaded: loaded (/usr/lib/systemd/system/pptpd.service; enabled; vendor preset: disabled)
-   Active: active (running) since 五 2019-01-04 11:15:53 CST; 4h 17min ago
- Main PID: 19053 (pptpd)
-   CGroup: /system.slice/pptpd.service
-           └─19053 /usr/sbin/pptpd -f
-```
-
-- 8.配置 win10 连接 vpn，如下图所示
-
-![vpn-01](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-01.png)<br> ![vpn-02](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-02.png)<br> ![vpn-03](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-03.png)<br>![vpn-04](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-04.png)<br>![vpn-05](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-05.png)<br>![vpn-06](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-06.png)<br>
-
-- tips：连接之后网页打不开，是因为网络访问都被转接到 vpn 上了，如下所示修改
-
-![vpn-07](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-07.png)<br> ![vpn-08](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-08.png)<br> ![vpn-09](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-09.png)<br>![vpn-10](https://raw.githubusercontent.com/ChangLCS/tips/master/image/vpn-10.png)<br>
