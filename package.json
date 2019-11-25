@@ -4,7 +4,8 @@
   "description": "https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral",
   "main": "js 正则.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "geo": "node getDatavGeo/index.js"
   },
   "repository": {
     "type": "git",
