@@ -35,3 +35,6 @@ registry=https://registry.npm.taobao.org
 ```
 
 - sass_binary_site 用来安装那个坑爹的 node-sass
+
+## 抓取 [阿里DATAV](http://datav.aliyun.com/tools/atlas/) 的GEO地图
+- [getDatavGeo.js](./getDatavGeo.js)

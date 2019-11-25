@@ -37,4 +37,4 @@ result*.json
 
 # *.iml
 
-package-lock.json
+/lib/geo
