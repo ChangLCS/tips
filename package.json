@@ -4,7 +4,8 @@
   "description": "https://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral",
   "main": "js 正则.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "geo": "node getDatavGeo/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   },
   "homepage": "https://github.com/ChangLCS/tips#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "mysql": "^2.15.0",
     "node-sass": "^4.9.3",
     "node-xlsx": "^0.12.1"

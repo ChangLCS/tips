@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 
 const codeArr = []; //  已有的编码数组
