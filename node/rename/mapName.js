@@ -5,10 +5,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const src = path.resolve(__dirname, '../../lib/geo/fullcode');
+const src = path.resolve(__dirname, '../../lib/geo/basecode');
 
 const arr = fs.readdirSync(src);
-const reg = new RegExp(/(\d+)_.*\.([^.]*)/);
+const reg = new RegExp(/(\d+)-.*\.([^.]*)/);
 
 console.log('arr', arr);
 for (let i = 0; i < arr.length; i += 1) {
