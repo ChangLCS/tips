@@ -16,7 +16,7 @@ console.log('arr', arr);
 for (let i = 0; i < arr.length; i += 1) {
   const item = arr[i];
   // if (!reg.test(item)) {
-  const str = item.replace(/…|在播放|正在播放|…正/g, '');
+  const str = item.replace(/…|在播放|正在播放|…正在播|放\s|…正/g, '');
   const res = str.replace(reg, '$2 -$1.mp3');
   fs.renameSync(path.resolve(src, item), path.resolve(src, res));
   // }
