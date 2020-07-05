@@ -27,6 +27,12 @@
       "request": "launch",
       "name": "修改扒下来的歌名",
       "program": "${workspaceFolder}\\node\\rename\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "七牛云上传",
+      "program": "${workspaceFolder}\\node\\qiniuUpload\\index.js"
     }
   ]
 }
