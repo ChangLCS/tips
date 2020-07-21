@@ -33,6 +33,12 @@
       "request": "launch",
       "name": "七牛云上传",
       "program": "${workspaceFolder}\\node\\qiniuUpload\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "getDatavGeo",
+      "program": "${workspaceFolder}\\getDatavGeo\\index.js"
     }
   ]
 }
