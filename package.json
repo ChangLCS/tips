@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/ChangLCS/tips#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "mysql": "^2.15.0",
     "node-sass": "^4.14.1",
     "node-xlsx": "^0.12.1",
