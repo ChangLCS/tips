@@ -4,7 +4,7 @@ const ffmetadata = require('ffmetadata');
 const ffmpeg = require('ffmpeg');
 
 const config = {
-  baseUrl: 'E:/BaiduNetdiskDownload/邓丽君诞生六十周年特藏《君之千言万语》 40CD',
+  baseUrl: 'E:/邓丽君/邓丽君诞生六十周年特藏《君之千言万语》 40CD',
   wavUrl: 'E:/wav',
   mp3Url: 'E:/mp3',
 };
@@ -128,14 +128,13 @@ const setInfo = (filePath, option) =>
   //         const nameReg = new RegExp(/(.*)\.mp3/);
   //         const match = son.match(nameReg);
   //         const name = match[1];
-  //         nameList.push(name);
   //         let retSon = son;
 
   //         if (nameList.includes(name)) {
   //           nameJSON[son] += 1;
   //           retSon = `${name}${nameJSON[son]}.mp3`;
   //         }
-  //         const retPath = path.resolve(config.mp3Url, son);
+  //         const retPath = path.resolve(config.mp3Url, retSon);
 
   //         try {
   //           fs.copyFileSync(sonPath, retPath);
