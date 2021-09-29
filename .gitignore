@@ -38,3 +38,5 @@ result*.json
 # *.iml
 
 # /lib/geo
+
+*/taobaoLive/download
