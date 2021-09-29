@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const api = require('./api');
-const codeJSON = require('./hunanCode');
+const codeJSON = require('./code');
 
 const data = Object.entries(codeJSON);
 let index = 0;
