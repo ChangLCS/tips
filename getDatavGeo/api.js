@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const instance = axios.create({
-  baseURL: 'https://geo.datav.aliyun.com/areas/bound/',
+  baseURL: 'https://geo.datav.aliyun.com/areas_v3/bound/',
   withCredentials: true,
   params: {},
   timeout: 0,

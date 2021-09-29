@@ -28,3 +28,9 @@ uglifycss css/index.css > js/index.min.js
 ### node-xlsx nodejs 读取、编辑 xlsx 模块 (node/baiduGet.js)有用到该模块，可参考
 
 [基础教程 https://blog.csdn.net/luo200618/article/details/52439992](https://blog.csdn.net/luo200618/article/details/52439992)
+
+如果 excel 导入的日期是 42747 这种，用
+
+```
+var a = new Date(1900, 0, 42747)
+```

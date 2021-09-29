@@ -28,5 +28,11 @@
       "name": "修改扒下来的歌名",
       "program": "${workspaceFolder}\\node\\rename\\index.js"
     }
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "csv解密",
+      "program": "${workspaceFolder}\\node\\csvDes\\index.js"
+    }
   ]
 }
