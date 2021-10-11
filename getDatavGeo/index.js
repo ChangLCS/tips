@@ -9,10 +9,10 @@ let index = 0;
 const timeoutTime = 100;
 
 const success = (base, ret, isFull, callback) => {
-  const filePath = path.resolve(__dirname, '../lib/geo20210930', `${base[0]}-${base[1]}.json`);
+  const filePath = path.resolve(__dirname, '../lib/geo20210930/base', `${base[0]}-${base[1]}.json`);
   const filePathFull = path.resolve(
     __dirname,
-    '../lib/geo20210930',
+    '../lib/geo20210930/full',
     `${base[0]}_full-${base[1]}.json`,
   );
 
@@ -46,7 +46,7 @@ const apiGet = () => {
   const url = `${base[0]}.json`;
   const urlFull = `${base[0]}_full.json`;
 
-  const isFull = true;
+  const isFull = false;
   const apiUrl = isFull ? urlFull : url;
 
   api
