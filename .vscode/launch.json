@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "对比本地手机音乐",
+      "program": "${workspaceFolder}\\node\\compareMusic\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "获取淘宝直播文件地址",
       "program": "${workspaceFolder}\\node\\taobaoLive\\index.js"
     },
