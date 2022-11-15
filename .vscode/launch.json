@@ -13,6 +13,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "获取authCode权限编码",
+      "program": "${workspaceFolder}\\node\\getAuthCodeJson\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "获取医院地址",
       "program": "${workspaceFolder}\\node\\baiduGet\\index.js"
     },
@@ -51,7 +57,7 @@
       "request": "launch",
       "name": "getDatavGeo",
       "program": "${workspaceFolder}\\getDatavGeo\\index.js"
-    }
+    },
     {
       "type": "node",
       "request": "launch",
