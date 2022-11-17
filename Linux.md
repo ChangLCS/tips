@@ -1,18 +1,18 @@
 ### Linux 配置全局变量
 
-```
+```sh
 vim /etc/profile
 ```
 
 如图所示，编辑 ![Linux 配置全局变量](https://raw.githubusercontent.com/ChangLCS/tips/master/image/linux-export.png)<br> 完成之后，输入一下命令重置权限，测试行不行
 
-```
+```sh
 source /etc/profile
 ```
 
 ### 如果不小心改了 `/etc/profile` 导致所有命令失效
 
-```
+```sh
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 ```
 
@@ -20,19 +20,19 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/b
 
 ### tar 解压
 
-```
+```sh
 tar -xzvf .tar.gz
 ```
 
 ### 查看 liunx 进程
 
-```
+```sh
 ps -ef | grep *
 ```
 
 例如现在想看 nginx 的进程
 
-```
+```sh
 ps -ef | grep nginx
 ```
 
@@ -40,7 +40,7 @@ ps -ef | grep nginx
 
 [docker 安装教程](http://www.runoob.com/docker/centos-docker-install.html)<br> 安装完成之后要创建一个 **`container(容器)`** 跟 **`image(镜像)`**，需要用到 **`Dockerfile`**，进入到一个自己定义的目录，像我就随便新增了个目录，然后在里面新增了一个 **`Dockerfile`** 文件，内容如下：
 
-```
+```docker
 FROM nginx:alpine
 
 MAINTAINER ChangLCS<584911924@qq.com>
@@ -52,13 +52,13 @@ CMD ["nginx","-g","daemon off;"]
 
 保存之后执行
 
-```
+```sh
 docker build -t [image名称] [Docker所在目录]
 ```
 
 结果如下图所示 ![docker build -t web-yinda .](https://raw.githubusercontent.com/ChangLCS/tips/master/image/docker-build.png) <br>之后执行以下命令，如图所示
 
-```
+```sh
 docker run -p [主机端口]:[image端口] -d [镜像名称]
 ```
 
@@ -70,7 +70,7 @@ docker run -p [主机端口]:[image端口] -d [镜像名称]
 
 安装完成之后，前往项目如下配置获取 token <br> ![gitlab-token.png](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-token.png) <br> 然后在服务器中执行以下命令注册 **`gitlab-runner`**
 
-```
+```sh
 gitlab-ci-multi-runner register
 ```
 
@@ -95,7 +95,7 @@ Please enter the executor: docker, parallels, ssh, virtualbox, kubernetes, docke
 Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 ```
 
-```
+```sh
 gitlab-ci-multi-runner start           # gitLab-runner后台运行
 ```
 
@@ -105,21 +105,26 @@ gitlab-ci-multi-runner start           # gitLab-runner后台运行
 
 经常遇到 gitlab-runner 权限不够，可以直接通过
 
-```
+```sh
 vim /etc/passwd
 ```
 
 改变 gitlab-runner 的权限变成 root 权限，这样文件的创建就没有任何问题了（个人做法，慎用） ![gitlab-ci-root.jpg](https://raw.githubusercontent.com/ChangLCS/tips/master/image/gitlab-runner-root.jpg)
 
+如果还是不行，则在root用户中，将文件夹权限赋予`gitlab-runner`用户，如下，建议创建一个公共的打包文件夹，进行权限赋予
+```sh
+chown -R 用户名 文件夹路径
+```
+
 ### root 用户安装 node-sass 总是失败，提示权限问题
 
-```
+```sh
 npm config set unsafe-perm=true
 ```
 
 这是 npm 的权限设置，root 用户默认是 false，其它用户是 true，将其改成 true，用
 
-```
+```sh
 npm config list
 ```
 
@@ -135,36 +140,36 @@ npm config list
 
 - 前往 [https://mirrors.edge.kernel.org/pub/software/scm/git/](https://mirrors.edge.kernel.org/pub/software/scm/git/)，下载最新的 git，或者自己找个版本，找 _.tar.gz_ 后缀的
 
-```
+```sh
 wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
 ```
 
 - 解压
 
-```
+```sh
 tar -zxvf git-2.18.0.tar.gz
 ```
 
 - 进入解压出来的 git 文件夹
 
-```
+```sh
 make configure
 ```
 
 - - 如果报错了 `/bin/sh: autoconf: command not found`
 - 安装 autoconf automake libtool
 
-```
+```sh
 yum install autoconf automake libtool
 ```
 
 - 打印出现 `GEN configure` 即正常，然后进行编译
 
-```
+```sh
 ./configure --prefix=/usr/local/git --with-iconv --with-curl --with-expat=/usr/local/lib
 ```
 
-```
+```sh
 make && make install
 make prefix=/usr all doc info
 make prefix=/usr install install-doc install-html install-info
@@ -172,14 +177,14 @@ make prefix=/usr install install-doc install-html install-info
 
 - - 如果报错 `cache.h:19:18: fatal error: zlib.h: No such file or directory` 安装 zlib，zlib-devel 后再执行 `make && make install`
 
-```
+```sh
 yum install zlib
 yum install zlib-devel
 ```
 
 - - 如果报错 `/bin/sh: line 1: asciidoc: command not found` 安装 `asciidoc` (最好是安装 git 之前先把这些全做一遍)
 
-```
+```sh
 wget https://nchc.dl.sourceforge.net/project/asciidoc/asciidoc/8.6.9/asciidoc-8.6.9.tar.gz
 cd asciidoc-8.6.9
 ./configure
@@ -189,7 +194,7 @@ yum install xmlto
 
 - - 如果报错 `/bin/sh: line 1: docbook2x-texi: command not found`，安装
 
-```
+```sh
 yum install docbook2X
 cd /usr/bin/
 ln -s db2x_docbook2texi docbook2x-texi
@@ -198,13 +203,13 @@ ln -s db2x_docbook2man docbook2x-man
 
 - 装完了之后要配置全局变量
 
-```
+```sh
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/git/bin
 ```
 
 - 重置全局变量
 
-```
+```sh
 source /etc/bashrc
 ```
 
@@ -212,13 +217,13 @@ source /etc/bashrc
 
 ### git fatal: Unable to find remote helper for 'https'
 
-```
+```sh
 yum install curl-devel
 ```
 
 - 然后前往 git 安装好的目录，如
 
-```
+```sh
 cd /usr/local/src/git-2.18.0/
 ./configure --prefix=/usr/local/git -with-curl=/usr
 make && make install
@@ -228,7 +233,7 @@ make && make install
 
 - 前往 `~` 进入 `cd .bash_profile`，以下代码复制到最后一行，如下
 
-```
+```sh
 export PS1="\e[36m\u\e[0m@\e[32m\h \e[0m \d \t \e[43\e[0m:\e[34m\w \e[0m\$ "
 ```
 
@@ -236,7 +241,7 @@ export PS1="\e[36m\u\e[0m@\e[32m\h \e[0m \d \t \e[43\e[0m:\e[34m\w \e[0m\$ "
 
 - 在执行下方命令另配置生效
 
-```
+```sh
 . .bash_profile
 ```
 
@@ -247,13 +252,13 @@ export PS1="\e[36m\u\e[0m@\e[32m\h \e[0m \d \t \e[43\e[0m:\e[34m\w \e[0m\$ "
 
 - 前往 [git 地址](https://github.com/creationix/nvm/releases) 找到 `nvm` 安装包版本，然后输入命令，如下，将版本号换成自己想要的
 
-```
+```sh
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 ```
 
 - 重置全局变量，再查看是否安装成功或者直接安装需要版本的 nodejs
 
-```
+```sh
 source ~/.bashrc
 nvm install node
 ```
@@ -264,7 +269,7 @@ nvm install node
 
 正常使用，只要用几个基本，需要其它另外使用 `pm2 -h` 查看程序帮助，这个里面已经很详细了，学好英文还是很重要的
 
-```
+```sh
 pm2 start app.js -n app --watch
 app.js        # 启动程序的路径
 -n app        # pm2中启动程序的名称，最好要配置，方便管理
@@ -276,23 +281,23 @@ pm2 stop [name|id]      # 暂停某一个程序的运行
 pm2 stop all            # 暂停所有程序的运行
 pm2 del [name|id]       # 删除某一个程序
 pm2 kill                # 删除所有程序
-————  stop 跟 del|kill 的概念不一样的，试一下就知道了
+# stop 跟 del|kill 的概念不一样的，试一下就知道了
 ```
 
 ###### 使用 pm2-logrotate 分割日志
 
-```
+```sh
 pm2 install pm2-logrotate     # 安装
 pm2 set pm2-logrotate:max_size 4096K      # 配置只要日志文件大于 4096K 则进行切割
 ```
 
-```
+```sh
 pm2 log --lines 1000    # 查看最近的1000条日志
 ```
 
 ### linux 传输文件到本地
 
-```
+```sh
 sz [filename|文件名称]
 ```
 
@@ -300,13 +305,13 @@ sz [filename|文件名称]
 
 先查看目前所有的 httpd 进程
 
-```
+```sh
 ps aux | grep httpd
 ```
 
 如下所示
 
-```
+```sh
 root      2091  0.0  0.1   5488  2832 ?        Ss   17:19   0:00 /web/apache//bin/httpd -k restart
 daemon    2475  0.0  0.1 283220  2256 ?        Sl   17:45   0:00 /web/apache//bin/httpd -k restart
 daemon    2476  0.0  0.1 283220  2260 ?        Sl   17:45   0:00 /web/apache//bin/httpd -k restart
@@ -316,7 +321,7 @@ root      2738  0.0  0.0   5500   736 pts/0    S+   17:56   0:00 grep httpd
 
 杀死进程，root 的留着
 
-```
+```sh
 kill -9 2091
 kill -9 2475
 kill -9 2476
@@ -329,13 +334,13 @@ kill -9 2477
 
 - 2 安装完成后，修改 conf
 
-```
+```sh
 vim /etc/openvpn/server.conf
 ```
 
 ![openvpn-01](https://raw.githubusercontent.com/ChangLCS/tips/master/image/openvpn/openvpn-01.png)<br> 加`;`是注释当前代码，使得不会当前上网不通过 vpn 通过，并加入一句
 
-```
+```sh
 push "route 你的内网ip段 255.255.0.0"
 ```
 
@@ -343,7 +348,7 @@ push "route 你的内网ip段 255.255.0.0"
 
 - 重启 openvpn
 
-```
+```sh
 systemctl restart openvpn@server.service
 ```
 
@@ -353,19 +358,19 @@ systemctl restart openvpn@server.service
 
 - 启动
 
-```
+```sh
 systemctl start firewalld（防火墙，也可以添加其它的服务）
 ```
 
 - 开机启动
 
-```
+```sh
 systemctl enable firewalld（防火墙，也可以添加其它的服务）
 ```
 
 - 重启
 
-```
+```sh
 systemctl restart firewalld（防火墙，也可以添加其它的服务）
 ```
 
@@ -373,19 +378,19 @@ systemctl restart firewalld（防火墙，也可以添加其它的服务）
 
 - 查看 firewall 服务状态
 
-```
+```sh
 systemctl status firewalld
 ```
 
 - 查看 firewall 的状态
 
-```
+```sh
 firewall-cmd --state
 ```
 
 - 开启、重启、关闭、firewalld.service 服务
 
-```
+```sh
 # 开启
 service firewalld start
 # 重启
@@ -396,13 +401,13 @@ service firewalld stop
 
 - 查看防火墙规则
 
-```
+```sh
 firewall-cmd --list-all
 ```
 
 - 查询、开放、关闭端口
 
-```
+```sh
 # 查询端口是否开放
 firewall-cmd --query-port=8080/tcp
 # 开放80端口
@@ -415,9 +420,9 @@ firewall-cmd --permanent --remove-port=8080/tcp
 firewall-cmd --reload
 
 # 参数解释
-1、firwall-cmd：是Linux提供的操作firewall的一个工具；
-2、--permanent：表示设置为持久；
-3、--add-port：标识添加的端口；
+# 1、firwall-cmd：是Linux提供的操作firewall的一个工具；
+# 2、--permanent：表示设置为持久；
+# 3、--add-port：标识添加的端口；
 ```
 
 - - tips：如果各项配置没有问题，但访问不了线上，检查防火墙端口配置

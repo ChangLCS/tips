@@ -5,7 +5,7 @@
 const axios = require('axios');
 
 const api = axios.create({
-  baseURL: 'http://api.map.baidu.com/geocoder/v2/',
+  baseURL: 'http://api.map.baidu.com/geocoding/v3/',
   params: {
     output: 'json',
     ak: '50195cabfc2327d58430d7b385a79e65',

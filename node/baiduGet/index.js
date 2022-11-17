@@ -7,7 +7,7 @@ const fs = require('fs');
 const xlsx = require('node-xlsx');
 const api = require('./api.js');
 
-const xlsxPath = path.resolve(__dirname, 'lib/医院.xlsx');
+const xlsxPath = path.resolve(__dirname, 'lib/医院支架2022.07.04.xlsx');
 
 const allData = xlsx.parse(xlsxPath);
 
@@ -43,7 +43,7 @@ const getPoint = (index, list, city, $baseIndex) => {
       return;
     }
     api
-      .getPoint(item[1], city)
+      .getPoint(item[1], item[2])
       .then((result) => {
         const data = result.data.result;
 
@@ -54,14 +54,16 @@ const getPoint = (index, list, city, $baseIndex) => {
             retList[$baseIndex].data[index] = [
               item[0],
               item[1],
-              item[2] || `${data.location.lng},${data.location.lat}`,
+              item[2],
+              item[3] || `${data.location.lng},${data.location.lat}`,
               data.level,
             ];
           } else {
             retList[$baseIndex].data[index] = [
               item[0],
               item[1],
-              item[2] || '',
+              item[2],
+              item[3] || '',
               '',
               '',
               `${data.location.lng},${data.location.lat}`,
