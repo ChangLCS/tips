@@ -1,0 +1,242 @@
+{
+  "basicData": {
+    "ownerSupplierManagement": {
+      "page": "center:ownerSupplier:page",
+      "add": "center:ownerSupplier:add"
+    },
+    "ownerCustomerManagement": {
+      "page": "center:ownerCustomer:page",
+      "add": "center:ownerCustomer:add"
+    },
+    "addressManagement": { "page": "center:address:page", "add": "center:address:add" },
+    "lineManagement": {
+      "page": "center:route:page",
+      "add": "center:route:add",
+      "delete": "center:route:delete"
+    },
+    "ownerGoodsManagement": {
+      "page": "center:ownerGoods:page",
+      "add": "center:ownerGoods:add",
+      "classification": "center:ownerGoods:classification"
+    },
+    "batchNo": { "page": "center:batchArchives:page" },
+    "goodsStorageSpace": {
+      "page": "center:ownerGoodsSpace:page",
+      "add": "center:ownerGoodsSpace:add"
+    },
+    "ownerGoodsTypeManagement": {
+      "page": "center:ownerGoodsCategory:page",
+      "add": "center:ownerGoodsCategory:add"
+    },
+    "wareHouse": { "page": "center:warehouse:page", "add": "center:warehouse:add" },
+    "storageArea": { "page": "center:storageArea:page", "add": "center:storageArea:add" },
+    "storageSection": { "page": "center:storageSection:page", "add": "center:storageSection:add" },
+    "storageSpace": {
+      "page": "center:storageSpace:page",
+      "add": "center:storageSpace:add",
+      "enabled": "center:storageSpace:enabled"
+    },
+    "container": { "page": "center:container:page", "add": "center:container:add" },
+    "roadCross": {
+      "list": "center:roadCross:list",
+      "add": "center:roadCross:add",
+      "enabled": "center:roadCross:enabled",
+      "defaulted": "center:roadCross:defaulted"
+    },
+    "driveManagement": {
+      "list": "center:driver:list",
+      "add": "center:driver:add",
+      "delete": "center:driver:delete",
+      "enable": "center:driver:enable"
+    },
+    "holiday": {
+      "page": "center:holiday:page",
+      "add": "center:holiday:add",
+      "delete": "center:holiday:delete"
+    },
+    "carManagement": {
+      "list": "center:car:list",
+      "add": "center:car:add",
+      "delete": "center:car:delete",
+      "enable": "center:car:enable",
+      "repair": "center:car:repair"
+    }
+  },
+  "ruleSetting": {
+    "receiptSplit": {
+      "list": "center:receivingRule:list",
+      "add": "center:receivingRule:add",
+      "delete": "center:receivingRule:delete",
+      "enabled": "center:receivingRule:enabled"
+    },
+    "waveManagementSheet": {
+      "page": "center:waveRule:page",
+      "add": "center:waveRule:add",
+      "delete": "center:waveRule:delete",
+      "enabled": "center:waveRule:enabled"
+    },
+    "waintenanceRules": {
+      "list": "center:maintainRule:list",
+      "add": "center:maintainRule:add",
+      "delete": "center:maintainRule:delete",
+      "enabled": "center:maintainRule:enabled"
+    }
+  },
+  "printSetting": {
+    "dataCollection": {
+      "list": "center:printDataCollection:list",
+      "add": "center:printDataCollection:add",
+      "delete": "center:printDataCollection:delete"
+    },
+    "dataTemplate": {
+      "list": "center:printDataTemplate:list",
+      "add": "center:printDataTemplate:add",
+      "delete": "center:printDataTemplate:delete",
+      "enabled": "center:printDataTemplate:enabled"
+    },
+    "dataDesign": {
+      "list": "center:printDataDesign:list",
+      "add": "center:printDataDesign:add",
+      "delete": "center:printDataDesign:delete",
+      "enabled": "center:printDataDesign:enabled",
+      "joinRole": "center:printDataDesign:joinRole",
+      "joinResource": "center:printDataDesign:joinResource"
+    },
+    "dataLog": { "list": "center:printDataDesignLog:list" }
+  },
+  "baseSetting": { "baseSetting": { "page": "center:setup:page", "save": "center:setup:save" } },
+  "purchase": {
+    "purchaseOrder": { "list": "center:receiptOrder:list", "open": "center:receiptOrder:open" },
+    "purchaseReceipt": {
+      "list": "center:purchaseReceiving:list",
+      "add": "center:purchaseReceiving:add",
+      "delete": "center:purchaseReceiving:delete",
+      "goodsBillTemplate": "center:purchaseReceiving:goodsBillTemplate"
+    },
+    "purchaseAcceptance": {
+      "list": "center:purchaseAccept:list",
+      "add": "center:purchaseAccept:add",
+      "delte": "center:purchaseAccept:delte",
+      "confirm": "center:moveLibraryAccept:confirm",
+      "create": "center:pdaAcceptSupervision:create",
+      "goodsBillTemplate": "center:purchaseReceiving:goodsBillTemplate",
+      "audit": "center:purchaseAccept:audit"
+    },
+    "returnReceipt": {
+      "list": "center:returnReceiving:list",
+      "add": "center:returnReceiving:add",
+      "delete": "center:returnReceiving:delete"
+    },
+    "returnAcceptance": {
+      "list": "center:returnAccept:list",
+      "add": "center:returnAccept:add",
+      "delete": "center:returnAccept:delete",
+      "confirm": "center:moveLibraryAccept:confirm",
+      "create": "center:pdaAcceptSupervision:create",
+      "audit": "center:returnAccept:audit"
+    },
+    "backReceipt": {
+      "list": "center:giveBackReceiving:list",
+      "add": "center:giveBackReceiving:add",
+      "delete": "center:giveBackReceiving:delete"
+    },
+    "backAcceptance": {
+      "list": "center:giveBackAccept:list",
+      "add": "center:giveBackAccept:add",
+      "delete": "center:giveBackAccept:delete",
+      "confirm": "center:moveLibraryAccept:confirm",
+      "create": "center:pdaAcceptSupervision:create",
+      "audit": "center:giveBackAccept:audit"
+    },
+    "moveReceipt": {
+      "list": "center:moveLibraryReceiving:list",
+      "add": "center:moveLibraryReceiving:add",
+      "delete": "center:moveLibraryReceiving:delete"
+    },
+    "moveAcceptance": {
+      "list": "center:moveLibraryAccept:list",
+      "add": "center:moveLibraryAccept:add",
+      "delete": "center:moveLibraryAccept:delete",
+      "confirm": "center:moveLibraryAccept:confirm",
+      "create": "center:pdaAcceptSupervision:create",
+      "audit": "center:moveLibraryAccept:audit"
+    },
+    "ownerReceipt": {
+      "list": "center:ownerSentGoodsReceiving:list",
+      "add": "center:ownerSentGoodsReceiving:add",
+      "delete": "center:ownerSentGoodsReceiving:delete"
+    },
+    "ownerAcceptance": {
+      "list": "center:ownerSentGoodsAccept:list",
+      "add": "center:ownerSentGoodsAccept:add",
+      "delete": "center:ownerSentGoodsAccept:delete",
+      "confirm": "center:moveLibraryAccept:confirm",
+      "create": "center:pdaAcceptSupervision:create",
+      "audit": "center:ownerSentGoodsAccept:audit"
+    },
+    "shelfOperation": { "list": "center:shelfOperation:list", "up": "center:shelfOperation:up" }
+  },
+  "sale": {
+    "saleOrder": { "list": "center:shipmentOrder:list" },
+    "waveManagement": {
+      "list": "center:waveOrder:list",
+      "updateDispatchNo": "center:waveOrder:updateDispatchNo",
+      "submit": "center:waveOrder:submit"
+    },
+    "waveAssignment": {
+      "list": "center:waveTask:list",
+      "manualPick": "center:waveTask:manualPick",
+      "createReplenishment": "center:waveTask:createReplenishment",
+      "forceSubmit": "center:waveTask:forceSubmit"
+    },
+    "pickTask": {
+      "list": "center:pickTask:list",
+      "confirmShipment": "center:pickTask:confirmShipment"
+    },
+    "conveyorLine": {
+      "list": "center:conveyorTask:list",
+      "confirm": "center:conveyorTask:confirm"
+    },
+    "containerCheck": { "confirm": "center:conveyorTask:confirm" }
+  },
+  "stockManagement": {
+    "storageSpaceStock": {
+      "page": "storageSpaceStock:storageSpaceStock:page",
+      "locked": "storageSpaceStock:storageSpaceStock:update:locked",
+      "update": "storageSpaceStock:storageSpaceStock:update"
+    },
+    "batchAdjustOrder": {
+      "page": "center:batchAdjustOrder:page",
+      "add": "center:batchAdjustOrder:add",
+      "update": "center:batchAdjustOrder:warehouse:update"
+    }
+  },
+  "move": {
+    "moveOrder": { "list": "center:moveOrder:list", "create": "center:moveOrder:create" },
+    "movePick": { "list": "center:movePick:list" },
+    "moveShelf": { "list": "center:moveShelf:list" }
+  },
+  "electronicsSupervise": {
+    "stockInRecord": {
+      "list": "center:electronicSupervision:scan:list",
+      "export": "center:electronicSupervision:export"
+    },
+    "stockInNoScanBill": { "list": "center:electronicSupervision:notscan:list" },
+    "stockOutRecord": {
+      "list": "center:scanBillRecord:list",
+      "export": "center:scanBillRecord:export"
+    },
+    "stockOutNoScanBill": { "list": "center:scanBill:list" }
+  },
+  "maintenan": {
+    "maintenanceSheet": {
+      "list": "center:maintain:list",
+      "add": "center:maintain:add",
+      "delete": "center:maintain:delete"
+    }
+  },
+  "apiLog": { "apiLog": { "list": "openapi:module:list", "execute": "openapi:log:execute" } },
+  "userManage": {
+    "userList": { "list": "center:userDataAuthority:list", "add": "center:userDataAuthority:add" }
+  }
+}
