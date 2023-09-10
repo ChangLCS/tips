@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const json = require('./extensions.json');
+const base = 'D:/.vscode/extensions/';
+
+const json = require(path.resolve(base, 'extensions.json'));
 
 const arr = json.map((e) => e.relativeLocation);
-
-const base = 'D:/.vscode/extensions/';
 
 async function deleteFolder(path) {
   if (fs.existsSync(path)) {
@@ -20,8 +20,22 @@ async function deleteFolder(path) {
   }
 }
 
-arr.forEach(async (e) => {
-  const url = path.resolve(base, e);
-  console.log('url', url);
-  // await deleteFolder(url);
+const baseUrl = path.resolve(base);
+const list = fs.readdirSync(baseUrl);
+
+console.log('start', new Date());
+let num = 0;
+list.forEach(async (e) => {
+  if (!arr.includes(e)) {
+    const url = path.resolve(baseUrl, e);
+    if (fs.lstatSync(url).isDirectory()) {
+      console.log('url', url, num, new Date());
+      num += 1;
+
+      await deleteFolder(url);
+      console.log('url', url, num, new Date());
+    }
+  }
 });
+
+console.log('end', new Date());

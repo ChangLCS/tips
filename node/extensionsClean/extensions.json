@@ -1658,30 +1658,6 @@
   },
   {
     "identifier": {
-      "id": "ms-ceintl.vscode-language-pack-zh-hans",
-      "uuid": "e4ee7751-6514-4731-9cdb-7580ffa9e70b"
-    },
-    "version": "1.81.2023081609",
-    "location": {
-      "$mid": 1,
-      "path": "/c:/Users/Administrator/.vscode/extensions/ms-ceintl.vscode-language-pack-zh-hans-1.81.2023081609",
-      "scheme": "file"
-    },
-    "relativeLocation": "ms-ceintl.vscode-language-pack-zh-hans-1.81.2023081609",
-    "metadata": {
-      "id": "e4ee7751-6514-4731-9cdb-7580ffa9e70b",
-      "publisherId": "0b0882c3-aee3-4d7c-b5f9-872f9be0a115",
-      "publisherDisplayName": "Microsoft",
-      "targetPlatform": "undefined",
-      "isApplicationScoped": true,
-      "updated": true,
-      "isPreReleaseVersion": false,
-      "installedTimestamp": 1693321377909,
-      "preRelease": false
-    }
-  },
-  {
-    "identifier": {
       "id": "visualstudioexptteam.intellicode-api-usage-examples",
       "uuid": "9fa2a00e-3bfa-4c2a-abc4-a865bb2b5cf3"
     },
@@ -1963,27 +1939,6 @@
     }
   },
   {
-    "identifier": { "id": "ms-toolsai.jupyter", "uuid": "6c2f1801-1e7f-45b2-9b5c-7782f1e076e8" },
-    "version": "2023.7.1002162226",
-    "location": {
-      "$mid": 1,
-      "path": "/c:/Users/Administrator/.vscode/extensions/ms-toolsai.jupyter-2023.7.1002162226-win32-x64",
-      "scheme": "file"
-    },
-    "relativeLocation": "ms-toolsai.jupyter-2023.7.1002162226-win32-x64",
-    "metadata": {
-      "id": "6c2f1801-1e7f-45b2-9b5c-7782f1e076e8",
-      "publisherId": "ac8eb7c9-3e59-4b39-8040-f0484d8170ce",
-      "publisherDisplayName": "Microsoft",
-      "targetPlatform": "win32-x64",
-      "isApplicationScoped": false,
-      "updated": true,
-      "isPreReleaseVersion": false,
-      "installedTimestamp": 1693321378557,
-      "preRelease": false
-    }
-  },
-  {
     "identifier": {
       "id": "vscjava.vscode-java-test",
       "uuid": "67c06b0d-1891-42ca-b2a8-113e79bff069"
@@ -2112,29 +2067,6 @@
       "updated": true,
       "isPreReleaseVersion": false,
       "installedTimestamp": 1693321377269,
-      "preRelease": false
-    }
-  },
-  {
-    "identifier": { "id": "ms-python.python", "uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5" },
-    "version": "2023.14.0",
-    "location": {
-      "$mid": 1,
-      "path": "/c:/Users/Administrator/.vscode/extensions/ms-python.python-2023.14.0",
-      "scheme": "file"
-    },
-    "relativeLocation": "ms-python.python-2023.14.0",
-    "metadata": {
-      "id": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5",
-      "publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
-      "publisherDisplayName": "Microsoft",
-      "targetPlatform": "undefined",
-      "isApplicationScoped": false,
-      "isMachineScoped": false,
-      "isBuiltin": false,
-      "updated": true,
-      "isPreReleaseVersion": false,
-      "installedTimestamp": 1693351275881,
       "preRelease": false
     }
   },
@@ -2392,9 +2324,6 @@
     "version": "0.0.1",
     "location": {
       "$mid": 1,
-      "fsPath": "c:\\Users\\Administrator\\.vscode\\extensions\\svgviewer.view-svgs-0.0.1",
-      "_sep": 1,
-      "external": "file:///c%3A/Users/Administrator/.vscode/extensions/svgviewer.view-svgs-0.0.1",
       "path": "/c:/Users/Administrator/.vscode/extensions/svgviewer.view-svgs-0.0.1",
       "scheme": "file"
     },
@@ -2407,6 +2336,75 @@
       "updated": false,
       "isPreReleaseVersion": false,
       "installedTimestamp": 1694353420087,
+      "preRelease": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-ceintl.vscode-language-pack-zh-hans",
+      "uuid": "e4ee7751-6514-4731-9cdb-7580ffa9e70b"
+    },
+    "version": "1.82.2023090609",
+    "location": {
+      "$mid": 1,
+      "path": "/c:/Users/Administrator/.vscode/extensions/ms-ceintl.vscode-language-pack-zh-hans-1.82.2023090609",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-ceintl.vscode-language-pack-zh-hans-1.82.2023090609",
+    "metadata": {
+      "id": "e4ee7751-6514-4731-9cdb-7580ffa9e70b",
+      "publisherId": "0b0882c3-aee3-4d7c-b5f9-872f9be0a115",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "isApplicationScoped": true,
+      "updated": true,
+      "isPreReleaseVersion": false,
+      "installedTimestamp": 1694353807300,
+      "preRelease": false
+    }
+  },
+  {
+    "identifier": { "id": "ms-toolsai.jupyter", "uuid": "6c2f1801-1e7f-45b2-9b5c-7782f1e076e8" },
+    "version": "2023.8.1002501831",
+    "location": {
+      "$mid": 1,
+      "path": "/c:/Users/Administrator/.vscode/extensions/ms-toolsai.jupyter-2023.8.1002501831-win32-x64",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-toolsai.jupyter-2023.8.1002501831-win32-x64",
+    "metadata": {
+      "id": "6c2f1801-1e7f-45b2-9b5c-7782f1e076e8",
+      "publisherId": "ac8eb7c9-3e59-4b39-8040-f0484d8170ce",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "win32-x64",
+      "isApplicationScoped": false,
+      "updated": true,
+      "isPreReleaseVersion": false,
+      "installedTimestamp": 1694353807339,
+      "preRelease": false
+    }
+  },
+  {
+    "identifier": { "id": "ms-python.python", "uuid": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5" },
+    "version": "2023.16.0",
+    "location": {
+      "$mid": 1,
+      "fsPath": "c:\\Users\\Administrator\\.vscode\\extensions\\ms-python.python-2023.16.0",
+      "_sep": 1,
+      "external": "file:///c%3A/Users/Administrator/.vscode/extensions/ms-python.python-2023.16.0",
+      "path": "/c:/Users/Administrator/.vscode/extensions/ms-python.python-2023.16.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-python.python-2023.16.0",
+    "metadata": {
+      "id": "f1f59ae4-9318-4f3c-a9b5-81b2eaa5f8a5",
+      "publisherId": "998b010b-e2af-44a5-a6cd-0b5fd3b9b6f8",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "isApplicationScoped": false,
+      "updated": true,
+      "isPreReleaseVersion": false,
+      "installedTimestamp": 1694353807324,
       "preRelease": false
     }
   }
