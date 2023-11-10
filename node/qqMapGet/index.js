@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const addressJson = require('./libs/tms地址表.json');
+const successData = require('./libs/success.json');
 
 const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' };
 
@@ -33,8 +34,8 @@ const getQqAddressToPoint = (address) =>
   api.get(apiPath.qqAddressToPoint, { params: { key: base.key, address } });
 
 const goGetAddress = (i, allData) => {
-  if (i >= 1) {
-    // if (i >= allData.length) {
+  // if (i >= 1) {
+  if (i >= allData.length) {
     endFn();
     return;
   }
@@ -61,7 +62,10 @@ const goGetAddress = (i, allData) => {
         retList.push(x);
       }
 
-      goGetAddress(i + 1, allData);
+      //  1s后再执行地址
+      setTimeout(() => {
+        goGetAddress(i + 1, allData);
+      }, 1000);
     })
     .catch((error) => {
       console.log('失败', item.customer_name, item.address_info);
@@ -70,6 +74,7 @@ const goGetAddress = (i, allData) => {
         $message: error.message,
       });
 
+      //  1s后再执行地址
       goGetAddress(i + 1, allData);
     });
 };
@@ -85,4 +90,19 @@ const dataInit = () => {
   goGetAddress(0, calcData);
 };
 
-dataInit();
+// dataInit();
+
+//  生成更新经纬度的sql
+const goSqlText = () => {
+  let all = '';
+  for (let i = 0; i < successData.length; i += 1) {
+    const item = successData[i];
+    const str = `UPDATE tms_address SET lon = '${item.lon}',lat = '${item.lat}'  WHERE id = '${item.id}';\n`;
+    all += str;
+  }
+
+  const updateSrc = path.resolve(__dirname, './libs/update.sql');
+  fs.writeFileSync(updateSrc, all);
+};
+
+goSqlText();
