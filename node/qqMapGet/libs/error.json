@@ -1,0 +1,33 @@
+[
+  {
+    "id": "2298",
+    "wms_address_id": "113665",
+    "customer_id": "65986",
+    "customer_name": "南阳市第三人民医院",
+    "address_type": "0",
+    "address_type_code": "",
+    "contacts": "",
+    "contact_phone": "0377-60182932",
+    "address_name": "",
+    "province_code": "",
+    "province_name": "",
+    "city_code": "",
+    "city_name": "",
+    "county_code": "",
+    "county_name": "",
+    "address_code": "K411300876",
+    "address_info": "后院二楼",
+    "lon": "",
+    "lat": "",
+    "is_enabled": "1",
+    "create_time": "29/3/2023 13:34:13",
+    "update_time": "9/6/2023 18:57:31",
+    "create_by": "",
+    "update_by": "",
+    "zip_code": "",
+    "is_third_party": "0",
+    "is_return": "1",
+    "default_sign": "",
+    "$message": "查询无结果"
+  }
+]

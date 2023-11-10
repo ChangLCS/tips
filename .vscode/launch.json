@@ -75,6 +75,12 @@
       "request": "launch",
       "name": "WMS-苏鲁海王-approval处理",
       "program": "${workspaceFolder}\\node\\wms-approval_no\\index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "腾讯地图-TMS-地址坐标获取",
+      "program": "${workspaceFolder}\\node\\qqMapGet\\index.js"
     }
   ]
 }
