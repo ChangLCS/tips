@@ -6,6 +6,8 @@ const successData = require('./libs/success.json');
 const noResultJson = require('./libs/noResult.json');
 
 const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' };
+// const base = { key: 'XVGBZ-NIGED-HKD4Q-P5XT4-TVFU3-PPFJP' };
+// const base = { key: 'BGHBZ-GDCLK-WDCJE-AQWIE-MKIPE-ZEBVX' };
 
 const api = axios.create({
   baseURL: 'https://apis.map.qq.com',
@@ -18,6 +20,9 @@ const apiPath = {
 const retList = []; //  有效结果
 const errList = []; //  错误结果
 
+let addressListAll = []; //  当前还有的地址列表
+let addressHasList = []; //  有效的能拿来计算的地址列表
+
 //  最终结果
 const endFn = () => {
   const successSrc = path.resolve(__dirname, './libs/success.json');
@@ -28,6 +33,12 @@ const endFn = () => {
 
   fs.writeFileSync(successSrc, JSON.stringify(retList));
   fs.writeFileSync(errorSrc, JSON.stringify(errList));
+
+  console.log('本次计算', '现有地址总数：', addressListAll.length);
+  console.log('本次计算', '有效的地址：', addressHasList.length);
+  console.log('本次计算', '实际计算值：', 10000);
+  console.log('本次计算', '成功地址：', retList.length);
+  console.log('本次计算', '失败地址：', errList.length);
 };
 
 //  传地址，获取ip
@@ -91,11 +102,14 @@ const dataInit = () => {
     (e) =>
       e.address_info &&
       !/~|\//.test(e.address_info) &&
-      noResultJson.every((item) => item.id !== e.id),
+      noResultJson.every((item) => String(item.id) !== String(e.id)),
   );
 
   const calcData = filterData.slice(0, 10000);
   console.log('calcData,', calcData);
+
+  addressListAll = data;
+  addressHasList = filterData;
 
   goGetAddress(0, calcData);
 };
