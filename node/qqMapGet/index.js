@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const addressJson = require('./libs/tms地址表.json');
 const successData = require('./libs/success.json');
+const noResultJson = require('./libs/noResult.json');
 
 const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' };
 
@@ -41,6 +42,10 @@ const goGetAddress = (i, allData) => {
   }
 
   const item = allData[i];
+  if (!item) {
+    endFn();
+    return;
+  }
 
   getQqAddressToPoint(item.address_info)
     .then((res) => {
@@ -50,7 +55,7 @@ const goGetAddress = (i, allData) => {
           ...item,
           $message: res.data.message,
         });
-        console.log('失败', item.customer_name, item.address_info, res.data.message);
+        console.log('失败', i, item.customer_name, item.address_info, res.data.message);
       } else {
         const x = {
           ...item,
@@ -58,17 +63,17 @@ const goGetAddress = (i, allData) => {
           lat: data.location.lat,
         };
 
-        console.log('成功', item.customer_name);
+        console.log('成功', i, item.customer_name);
         retList.push(x);
       }
 
-      //  1s后再执行地址
+      //  250ms后再执行地址
       setTimeout(() => {
         goGetAddress(i + 1, allData);
-      }, 1000);
+      }, 250);
     })
     .catch((error) => {
-      console.log('失败', item.customer_name, item.address_info);
+      console.log('失败', i, item.customer_name, item.address_info);
       errList.push({
         ...item,
         $message: error.message,
@@ -82,7 +87,12 @@ const goGetAddress = (i, allData) => {
 //  数据处理
 const dataInit = () => {
   const data = addressJson.RECORDS;
-  const filterData = data.filter((e) => e.address_info && !/~|\//.test(e.address_info));
+  const filterData = data.filter(
+    (e) =>
+      e.address_info &&
+      !/~|\//.test(e.address_info) &&
+      noResultJson.every((item) => item.id !== e.id),
+  );
 
   const calcData = filterData.slice(0, 10000);
   console.log('calcData,', calcData);
