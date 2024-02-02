@@ -5,9 +5,12 @@ const addressJson = require('./libs/tms地址表.json');
 const successData = require('./libs/success.json');
 const noResultJson = require('./libs/noResult.json');
 
-const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' };
-// const base = { key: 'XVGBZ-NIGED-HKD4Q-P5XT4-TVFU3-PPFJP' };
+// const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' }; //  TMS自身使用，尽量别用这个
+const base = { key: 'XVGBZ-NIGED-HKD4Q-P5XT4-TVFU3-PPFJP' };
 // const base = { key: 'BGHBZ-GDCLK-WDCJE-AQWIE-MKIPE-ZEBVX' };
+// const base = { key: 'NHLBZ-6AW3G-IHCQI-QWDUE-ZFCX7-BIFDJ' };
+// const base = { key: 'GNGBZ-ZJNE4-EUSUD-X6IMZ-UOOM3-HCF5J' };
+// const base = { key: 'EKQBZ-S77KI-S3XGC-5GAH7-DSJ3E-GZFBP' };
 
 const api = axios.create({
   baseURL: 'https://apis.map.qq.com',
@@ -114,7 +117,6 @@ const dataInit = () => {
   goGetAddress(0, calcData);
 };
 
-// dataInit();
 
 //  生成更新经纬度的sql
 const goSqlText = () => {
@@ -129,4 +131,9 @@ const goSqlText = () => {
   fs.writeFileSync(updateSrc, all);
 };
 
+
+// 调用腾讯位置服务获取坐标
+// dataInit();
+
+//  生成更新坐标的sql
 goSqlText();
