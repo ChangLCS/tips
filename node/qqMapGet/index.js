@@ -6,8 +6,8 @@ const successData = require('./libs/success.json');
 const noResultJson = require('./libs/noResult.json');
 
 // const base = { key: '6OXBZ-46NKF-BX3JZ-JNM34-53A3V-IJFIR' }; //  TMS自身使用，尽量别用这个
-const base = { key: 'XVGBZ-NIGED-HKD4Q-P5XT4-TVFU3-PPFJP' };
-// const base = { key: 'BGHBZ-GDCLK-WDCJE-AQWIE-MKIPE-ZEBVX' };
+const base = { key: 'XVGBZ-NIGED-HKD4Q-P5XT4-TVFU3-PPFJP' }; // HWYP-SERVER
+// const base = { key: 'BGHBZ-GDCLK-WDCJE-AQWIE-MKIPE-ZEBVX' }; //  测试版-B2B
 // const base = { key: 'NHLBZ-6AW3G-IHCQI-QWDUE-ZFCX7-BIFDJ' };
 // const base = { key: 'GNGBZ-ZJNE4-EUSUD-X6IMZ-UOOM3-HCF5J' };
 // const base = { key: 'EKQBZ-S77KI-S3XGC-5GAH7-DSJ3E-GZFBP' };
@@ -61,7 +61,14 @@ const goGetAddress = (i, allData) => {
     return;
   }
 
-  getQqAddressToPoint(item.address_info)
+  const text = [
+    item.province_name || '',
+    item.city_name || '',
+    item.county_name || '',
+    item.address_full || '',
+  ].join('');
+
+  getQqAddressToPoint(text)
     .then((res) => {
       const data = res.data.result;
       if (!data) {
@@ -69,15 +76,15 @@ const goGetAddress = (i, allData) => {
           ...item,
           $message: res.data.message,
         });
-        console.log('失败', i, item.customer_name, item.address_info, res.data.message);
+        console.log('失败', i, item.id, item.customer_name, text, res.data.message);
       } else {
         const x = {
           ...item,
-          lon: data.location.lng,
-          lat: data.location.lat,
+          longitude: data.location.lng,
+          latitude: data.location.lat,
         };
 
-        console.log('成功', i, item.customer_name);
+        console.log('成功', i, item.customer_name, text);
         retList.push(x);
       }
 
@@ -101,14 +108,9 @@ const goGetAddress = (i, allData) => {
 //  数据处理
 const dataInit = () => {
   const data = addressJson.RECORDS;
-  const filterData = data.filter(
-    (e) =>
-      e.address_info &&
-      !/~|\//.test(e.address_info) &&
-      noResultJson.every((item) => String(item.id) !== String(e.id)),
-  );
+  const filterData = data.filter((e) => e.address_full);
 
-  const calcData = filterData.slice(0, 10000);
+  const calcData = filterData.slice(0, 5000);
   console.log('calcData,', calcData);
 
   addressListAll = data;
@@ -117,23 +119,24 @@ const dataInit = () => {
   goGetAddress(0, calcData);
 };
 
-
 //  生成更新经纬度的sql
 const goSqlText = () => {
   let all = '';
   for (let i = 0; i < successData.length; i += 1) {
     const item = successData[i];
-    const str = `UPDATE tms_address SET lon = '${item.lon}',lat = '${item.lat}'  WHERE id = '${item.id}';\n`;
+    const str = `UPDATE dis_address SET longitude = '${item.longitude}',latitude = '${item.latitude}'  WHERE id = '${item.id}';\n`;
     all += str;
   }
 
   const updateSrc = path.resolve(__dirname, './libs/update.sql');
   fs.writeFileSync(updateSrc, all);
-};
 
+  console.log('文件保存成功');
+};
 
 // 调用腾讯位置服务获取坐标
 // dataInit();
+// return; 
 
 //  生成更新坐标的sql
 goSqlText();

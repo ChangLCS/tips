@@ -82,5 +82,11 @@
       "name": "腾讯地图-TMS-地址坐标获取",
       "program": "${workspaceFolder}\\node\\qqMapGet\\index.js"
     }
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "vant行政区划信息完善",
+      "program": "${workspaceFolder}\\node\\adcode\\vantArea.js"
+    }
   ]
 }
