@@ -70,36 +70,77 @@ const renameFile = (srcKey, destKey) =>
     );
   });
 
-const basePath = path.resolve(__dirname, '../../geoJSON');
+// const basePath = path.resolve(__dirname, '../../geoJSON');
+// console.log('basePath', basePath);
+
+// const allFilePath = []; //  所有需要上传的文件
+
+// const baseKey = 'geo/base';
+// const baseList = fs.readdirSync(path.resolve(basePath, `.${baseKey}`));
+// baseList.map((item) => {
+//   const data = {
+//     key: `${baseKey}/${item}`,
+//     localFile: path.resolve(basePath, `.${baseKey}`, item),
+//   };
+//   allFilePath.push(data);
+// });
+
+// const fullKey = 'geo/full';
+// const fullList = fs.readdirSync(path.resolve(basePath, `.${fullKey}`));
+// fullList.map((item) => {
+//   const data = {
+//     key: `${fullKey}/${item}`,
+//     localFile: path.resolve(basePath, `.${fullKey}`, item),
+//   };
+//   allFilePath.push(data);
+// });
+
+// 获取某目录下的所有文件地址
+const getDirAllFile = (baseDir, key = '') => {
+  const arr = [];
+  const baseList = fs.readdirSync(path.resolve(baseDir));
+  for (let i = 0; i < baseList.length; i += 1) {
+    const item = baseList[i];
+    const data = {
+      key: [key, item].join('/'),
+      localFile: path.resolve(baseDir, item),
+    };
+
+    const isDir = fs.statSync(data.localFile).isDirectory();
+    if (isDir) {
+      arr.push(...getDirAllFile(data.localFile, data.key));
+    } else {
+      arr.push(data);
+    }
+  }
+  return arr;
+};
+
+const basePath = path.resolve('C:/Users/admin/Desktop/cdn');
+const listAll = getDirAllFile(basePath);
 console.log('basePath', basePath);
+console.log('listAll', listAll);
 
 const allFilePath = []; //  所有需要上传的文件
 
-const baseKey = 'geo/base';
-const baseList = fs.readdirSync(path.resolve(basePath, `.${baseKey}`));
-baseList.map((item) => {
+const baseKey = 'libs/cdn';
+listAll.forEach((item) => {
+  console.log('item', item);
   const data = {
-    key: `${baseKey}/${item}`,
-    localFile: path.resolve(basePath, `.${baseKey}`, item),
+    key: `${baseKey}${item.key}`,
+    localFile: item.localFile,
   };
   allFilePath.push(data);
 });
 
-const fullKey = 'geo/full';
-const fullList = fs.readdirSync(path.resolve(basePath, `.${fullKey}`));
-fullList.map((item) => {
-  const data = {
-    key: `${fullKey}/${item}`,
-    localFile: path.resolve(basePath, `.${fullKey}`, item),
-  };
-  allFilePath.push(data);
-});
+console.log('allFilePath', allFilePath);
 
 (async () => {
   const errorArr = [];
   for (let i = 0; i < allFilePath.length; i += 1) {
     const item = allFilePath[i];
     try {
+      console.log('item.keyitem.keyitem.key', item.key, item.localFile);
       await uploadFile(item.key, item.localFile);
       // await renameFile(item.key, item.key);
       console.log('完成1 ', i);
